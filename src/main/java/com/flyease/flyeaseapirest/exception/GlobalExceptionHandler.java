@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
                     mapErrors.put(clave, valor);
                 }
         );
-        ApiResponse apiResponse = new ApiResponse(mapErrors.toString(), webRequest.getDescription(false));
+        ApiResponse apiResponse = new ApiResponse(mapErrors.toString(), false);
         return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
     }
 
@@ -36,7 +36,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ApiResponse> handlerResourceNotFoundException (ResourceNotFoundException exception,
                                                                          WebRequest webRequest) {
-        ApiResponse apiResponse = new ApiResponse(exception.getMessage(), webRequest.getDescription(false));
+        ApiResponse apiResponse = new ApiResponse(exception.getMessage(), false);
         return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
     }
 
@@ -44,16 +44,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ApiResponse> handlerBadRequestException(BadRequestException exception,
                                                                   WebRequest webRequest) {
-        ApiResponse apiResponse = new ApiResponse(exception.getMessage(), webRequest.getDescription(false));
-        return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
+        ApiResponse apiResponse = new ApiResponse(exception.getMessage(), false);
+        return new ResponseEntity<>(apiResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     // Controla los errores de varios tipos y globalizarlo con un error 500
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse> handlerException(Exception exception,
                                                         WebRequest webRequest) {
-        ApiResponse apiResponse = new ApiResponse(exception.getMessage(), webRequest.getDescription(false));
-        return new ResponseEntity<>(apiResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        ApiResponse apiResponse = new ApiResponse(exception.getMessage(), false);
+        return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
     }
 
 }

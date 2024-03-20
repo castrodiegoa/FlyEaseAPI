@@ -5,6 +5,7 @@ import com.flyease.flyeaseapirest.model.dto.PaisDto;
 import com.flyease.flyeaseapirest.model.entity.Pais;
 import com.flyease.flyeaseapirest.service.IPaisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,9 @@ public class PaisImplService implements IPaisService {
     @Autowired
     private PaisDao paisDao;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @Override
     public List<Pais> listAlll() {
         return (List) paisDao.findAll();
@@ -24,13 +28,26 @@ public class PaisImplService implements IPaisService {
     @Transactional
     @Override
     public Pais save(PaisDto paisDto) {
+        jdbcTemplate.update("CALL p_insertar_pais(?)", paisDto.getNombre());
         Pais pais = Pais.builder()
                 .idPais(paisDto.getIdPais())
                 .nombre(paisDto.getNombre())
                 .fechaRegistro(paisDto.getFechaRegistro())
                 .build();
-        return paisDao.save(pais);
+        return pais;
     }
+
+    @Transactional
+    public Pais update(PaisDto paisDto) {
+        jdbcTemplate.update("CALL p_actualizar_pais(?, ?)", paisDto.getIdPais(), paisDto.getNombre());
+        Pais pais = Pais.builder()
+                .idPais(paisDto.getIdPais())
+                .nombre(paisDto.getNombre())
+                .fechaRegistro(paisDto.getFechaRegistro())
+                .build();
+        return pais;
+    }
+
 
     @Transactional(readOnly = true)
     @Override
@@ -41,7 +58,7 @@ public class PaisImplService implements IPaisService {
     @Transactional
     @Override
     public void delete(Pais pais) {
-        paisDao.delete(pais);
+        jdbcTemplate.update("CALL p_eliminar_pais(?)", pais.getIdPais());
     }
 
     @Override

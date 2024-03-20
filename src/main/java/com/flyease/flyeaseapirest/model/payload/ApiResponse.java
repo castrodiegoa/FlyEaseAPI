@@ -1,5 +1,6 @@
 package com.flyease.flyeaseapirest.model.payload;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,15 +9,15 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
+@Builder
 public class ApiResponse {
 
-    private Date tiempo = new Date();
     private String mensaje;
-    private String url;
+    private Boolean sucess;
 
-    public ApiResponse(String mensaje, String url) {
+    public ApiResponse(String mensaje, Boolean sucess) {
         this.mensaje = mensaje;
-        this.url = url.replace("uri=", "");
+        this.sucess = sucess;
     }
 
 }

@@ -8,11 +8,13 @@ import java.util.List;
 public interface IPaisService {
     List<Pais> listAlll();
 
-    Pais save(PaisDto cliente);
+    Pais save(PaisDto pais);
+
+    Pais update(PaisDto paisDto);
 
     Pais findById(Integer id);
 
-    void delete(Pais cliente);
+    void delete(Pais pais);
 
     boolean existsById(Integer id);
 }

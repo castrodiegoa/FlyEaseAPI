@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class MensajeResponse implements Serializable {
 
     private String mensaje;
-    private Object object;
+    private Boolean sucess;
+    private Object response;
 
 }
