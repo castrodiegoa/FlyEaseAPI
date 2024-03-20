@@ -1,8 +1,8 @@
 package com.flyease.flyeaseapirest.model.dto;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,6 +13,8 @@ import java.util.Date;
 public class PaisDto implements Serializable {
 
     private Integer idPais;
+    @Size(min = 1, max = 60)
+    @NotEmpty(message = "Nombre requerido!")
     private String nombre;
     private Date fechaRegistro;
 

@@ -1,9 +1,12 @@
 package com.flyease.flyeaseapirest.controller;
 
+import com.flyease.flyeaseapirest.exception.BadRequestException;
+import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
 import com.flyease.flyeaseapirest.model.dto.PaisDto;
 import com.flyease.flyeaseapirest.model.entity.Pais;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
 import com.flyease.flyeaseapirest.service.IPaisService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -22,13 +25,8 @@ public class PaisController {
     @GetMapping("paises")
     public ResponseEntity<?> showAll() {
         List<Pais> getList = paisService.listAlll();
-        if (getList == null) {
-            return new ResponseEntity<>(
-                    MensajeResponse.builder()
-                            .mensaje("No hay registros")
-                            .object(null)
-                            .build()
-                    , HttpStatus.OK);
+        if (getList == null || getList.isEmpty()) {
+            throw new ResourceNotFoundException("paises");
         }
 
         return new ResponseEntity<>(
@@ -41,7 +39,7 @@ public class PaisController {
 
 
     @PostMapping("pais")
-    public ResponseEntity<?> create(@RequestBody PaisDto paisDto) {
+    public ResponseEntity<?> create(@RequestBody @Valid PaisDto paisDto) {
         Pais paisSave = null;
         try {
             paisSave = paisService.save(paisDto);
@@ -55,17 +53,12 @@ public class PaisController {
                     .build()
                     , HttpStatus.CREATED);
         } catch (DataAccessException exDt) {
-            return new ResponseEntity<>(
-                    MensajeResponse.builder()
-                            .mensaje(exDt.getMessage())
-                            .object(null)
-                            .build()
-                    , HttpStatus.METHOD_NOT_ALLOWED);
+            throw  new BadRequestException(exDt.getMessage());
         }
     }
 
     @PutMapping("pais/{id}")
-    public ResponseEntity<?> update(@RequestBody PaisDto paisDto, @PathVariable Integer id) {
+    public ResponseEntity<?> update(@RequestBody @Valid PaisDto paisDto, @PathVariable Integer id) {
         Pais paisUpdate = null;
         try {
             if (paisService.existsById(id)) {
@@ -81,20 +74,10 @@ public class PaisController {
                         .build()
                         , HttpStatus.CREATED);
             } else {
-                return new ResponseEntity<>(
-                        MensajeResponse.builder()
-                                .mensaje("El registro que intenta actualizar no se encuentra en la base de datos.")
-                                .object(null)
-                                .build()
-                        , HttpStatus.NOT_FOUND);
+                throw new ResourceNotFoundException("pais", "id", id);
             }
         } catch (DataAccessException exDt) {
-            return new ResponseEntity<>(
-                    MensajeResponse.builder()
-                            .mensaje(exDt.getMessage())
-                            .object(null)
-                            .build()
-                    , HttpStatus.METHOD_NOT_ALLOWED);
+            throw  new BadRequestException(exDt.getMessage());
         }
     }
 
@@ -105,12 +88,7 @@ public class PaisController {
             paisService.delete(paisDelete);
             return new ResponseEntity<>(paisDelete, HttpStatus.NO_CONTENT);
         } catch (DataAccessException exDt) {
-            return new ResponseEntity<>(
-                    MensajeResponse.builder()
-                            .mensaje(exDt.getMessage())
-                            .object(null)
-                            .build()
-                    , HttpStatus.METHOD_NOT_ALLOWED);
+            throw  new BadRequestException(exDt.getMessage());
         }
     }
 
@@ -119,12 +97,7 @@ public class PaisController {
         Pais pais = paisService.findById(id);
 
         if (pais == null) {
-            return new ResponseEntity<>(
-                    MensajeResponse.builder()
-                            .mensaje("El registro que intenta buscar, no existe!!")
-                            .object(null)
-                            .build()
-                    , HttpStatus.NOT_FOUND);
+            throw new ResourceNotFoundException("pais", "id", id);
         }
 
         return new ResponseEntity<>(
