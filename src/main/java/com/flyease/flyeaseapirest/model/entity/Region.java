@@ -1,12 +1,10 @@
 package com.flyease.flyeaseapirest.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -14,13 +12,13 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
-@Table(name = "paises")
-public class Pais implements Serializable {
+@Table(name = "regiones")
+public class Region implements Serializable {
 
     @Id
-    @Column(name = "idpais")
+    @Column(name = "idregion")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idPais;
+    private Integer idRegion;
 
     @Column(name = "nombre")
     private String nombre;
@@ -28,8 +26,8 @@ public class Pais implements Serializable {
     @Column(name = "fecharegistro")
     private LocalDateTime fechaRegistro;
 
-    @OneToMany(mappedBy = "pais", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Region> regiones;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idpais")
+    private Pais pais;
 
 }
