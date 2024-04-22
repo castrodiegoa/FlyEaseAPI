@@ -14,13 +14,13 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
-@Table(name = "regiones")
-public class Region implements Serializable {
+@Table(name = "ciudades")
+public class Ciudad implements Serializable {
 
     @Id
-    @Column(name = "idregion")
+    @Column(name = "idciudad")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idRegion;
+    private Integer idCiudad;
 
     @Column(name = "nombre")
     private String nombre;
@@ -28,12 +28,15 @@ public class Region implements Serializable {
     @Column(name = "fecharegistro")
     private LocalDateTime fechaRegistro;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idpais")
-    private Pais pais;
+    @Column(name = "imagen")
+    private byte[] imagen;
 
-    @OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idregion")
+    private Region region;
+
+    @OneToMany(mappedBy = "ciudad", fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<Ciudad> ciudades;
-    
+    private List<Aeropuerto> aeropuertos;
+
 }

@@ -6,7 +6,6 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -14,26 +13,24 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
-@Table(name = "regiones")
-public class Region implements Serializable {
+@Table(name = "coordenadas")
+public class Coordenadas implements Serializable {
 
     @Id
-    @Column(name = "idregion")
+    @Column(name = "idcoordenada")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idRegion;
+    private Integer idCoordenada;
 
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "latitud")
+    private Double latitud;
+
+    @Column(name = "longitud")
+    private Double longitud;
 
     @Column(name = "fecharegistro")
     private LocalDateTime fechaRegistro;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idpais")
-    private Pais pais;
-
-    @OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "coordenadas", fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<Ciudad> ciudades;
-    
+    private Aeropuerto aeropuerto;
 }
