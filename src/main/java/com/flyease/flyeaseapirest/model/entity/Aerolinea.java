@@ -20,22 +20,22 @@ public class Aerolinea implements Serializable {
     @Id
     @Column(name = "idaereolinea")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idAerolinea;
+    private Integer idaereolinea;
 
     @Column(name = "nombre")
     private String nombre;
 
     @Column(name = "codigoiata")
-    private String codigoIATA;
+    private String codigoiata;
 
     @Column(name = "codigoicao")
-    private String codigoICAO;
+    private String codigoicao;
 
     @Column(name = "fecharegistro")
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
-    //@OneToMany(mappedBy = "aerolinea", fetch = FetchType.LAZY)
-    //@JsonIgnore
-    //private List<Avion> aviones;
+    @OneToMany(mappedBy = "aereolinea", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Avion> aviones;
 
 }

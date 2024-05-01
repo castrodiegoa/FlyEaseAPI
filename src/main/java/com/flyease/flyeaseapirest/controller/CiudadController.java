@@ -36,7 +36,7 @@ public class CiudadController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(getList)
                         .build()
                 , HttpStatus.OK);
@@ -53,11 +53,11 @@ public class CiudadController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(CiudadDto.builder()
-                                .idCiudad(ciudad.getIdCiudad())
+                                .idciudad(ciudad.getIdciudad())
                                 .nombre(ciudad.getNombre())
-                                .fechaRegistro(ciudad.getFechaRegistro())
+                                .fecharegistro(ciudad.getFecharegistro())
                                 .imagen(ciudad.getImagen())
                                 .region(ciudad.getRegion())
                                 .build())
@@ -72,11 +72,11 @@ public class CiudadController {
             ciudadSave = ciudadService.save(ciudadDto);
             return new ResponseEntity<>(MensajeResponse.builder()
                     .mensaje("Guardado correctamente")
-                    .sucess(true)
+                    .success(true)
                     .response(CiudadDto.builder()
-                            .idCiudad(ciudadSave.getIdCiudad())
+                            .idciudad(ciudadSave.getIdciudad())
                             .nombre(ciudadSave.getNombre())
-                            .fechaRegistro(ciudadSave.getFechaRegistro())
+                            .fecharegistro(ciudadSave.getFecharegistro())
                             .imagen(ciudadSave.getImagen())
                             .region(ciudadSave.getRegion())
                             .build())
@@ -92,15 +92,15 @@ public class CiudadController {
         Ciudad ciudadUpdate = null;
         try {
             if (ciudadService.existsById(id)) {
-                ciudadDto.setIdCiudad(id);
+                ciudadDto.setIdciudad(id);
                 ciudadUpdate = ciudadService.update(ciudadDto);
                 return new ResponseEntity<>(MensajeResponse.builder()
                         .mensaje("Actualizado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .response(CiudadDto.builder()
-                                .idCiudad(ciudadUpdate.getIdCiudad())
+                                .idciudad(ciudadUpdate.getIdciudad())
                                 .nombre(ciudadUpdate.getNombre())
-                                .fechaRegistro(ciudadUpdate.getFechaRegistro())
+                                .fecharegistro(ciudadUpdate.getFecharegistro())
                                 .imagen(ciudadUpdate.getImagen())
                                 .region(ciudadUpdate.getRegion())
                                 .build())
@@ -122,7 +122,7 @@ public class CiudadController {
                 ciudadService.delete(ciudadDelete);
                 return new ResponseEntity<>(ApiResponse.builder()
                         .mensaje("Eliminado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .build()
                         , HttpStatus.OK);
             }

@@ -20,7 +20,7 @@ public class Estado implements Serializable {
     @Id
     @Column(name = "idestado")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idEstado;
+    private Integer idestado;
 
     @Column(name = "nombre")
     private String nombre;
@@ -29,13 +29,13 @@ public class Estado implements Serializable {
     private String descripcion;
 
     @Column(name = "fecharegistro")
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @Column(name = "detencion")
     private Boolean detencion;
 
-    //@OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
-    //@JsonIgnore
-    //private List<Vuelo> vuelos;
+    @OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Vuelo> vuelos;
 
 }

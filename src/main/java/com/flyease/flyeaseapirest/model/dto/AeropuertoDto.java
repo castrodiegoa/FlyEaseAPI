@@ -17,13 +17,13 @@ import java.time.LocalDateTime;
 @Builder
 public class AeropuertoDto implements Serializable {
 
-    private Integer idAeropuerto;
+    private Integer idaeropuerto;
 
     @Size(min = 1, max = 50)
     @NotEmpty(message = "Nombre requerido!")
     private String nombre;
 
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @NotNull(message = "Ciudad requerida!")
     private Ciudad ciudad;

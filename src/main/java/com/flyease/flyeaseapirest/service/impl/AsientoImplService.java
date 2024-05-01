@@ -34,14 +34,14 @@ public class AsientoImplService implements IAsientoService {
         jdbcTemplate.update("CALL p_insertar_asiento(?, ?, ?, ?)",
                 asientoDto.getPosicion(),
                 asientoDto.getDisponibilidad(),
-                asientoDto.getCategoria().getIdCategoria(),
+                asientoDto.getCategoria().getIdcategoria(),
                 asientoDto.getAvion().getIdavion());
 
         Asiento asiento = Asiento.builder()
-                .idAsiento(asientoDto.getIdAsiento())
+                .idasiento(asientoDto.getIdasiento())
                 .posicion(asientoDto.getPosicion())
                 .disponibilidad(asientoDto.getDisponibilidad())
-                .fechaRegistro(asientoDto.getFechaRegistro())
+                .fecharegistro(asientoDto.getFecharegistro())
                 .avion(asientoDto.getAvion())
                 .categoria(asientoDto.getCategoria())
                 .build();
@@ -51,17 +51,17 @@ public class AsientoImplService implements IAsientoService {
     @Transactional
     public Asiento update(AsientoDto asientoDto) {
         jdbcTemplate.update("CALL p_actualizar_asiento(?, ?, ?, ?, ?)",
-                asientoDto.getIdAsiento(),
+                asientoDto.getIdasiento(),
                 asientoDto.getPosicion(),
                 asientoDto.getDisponibilidad(),
-                asientoDto.getCategoria().getIdCategoria(),
+                asientoDto.getCategoria().getIdcategoria(),
                 asientoDto.getAvion().getIdavion());
 
         Asiento asiento = Asiento.builder()
-                .idAsiento(asientoDto.getIdAsiento())
+                .idasiento(asientoDto.getIdasiento())
                 .posicion(asientoDto.getPosicion())
                 .disponibilidad(asientoDto.getDisponibilidad())
-                .fechaRegistro(asientoDto.getFechaRegistro())
+                .fecharegistro(asientoDto.getFecharegistro())
                 .avion(asientoDto.getAvion())
                 .categoria(asientoDto.getCategoria())
                 .build();
@@ -78,7 +78,7 @@ public class AsientoImplService implements IAsientoService {
     @Transactional
     @Override
     public void delete(Asiento asiento) {
-        jdbcTemplate.update("CALL p_eliminar_asiento(?)", asiento.getIdAsiento());
+        jdbcTemplate.update("CALL p_eliminar_asiento(?)", asiento.getIdasiento());
     }
 
     @Override

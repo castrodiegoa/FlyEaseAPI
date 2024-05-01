@@ -16,13 +16,13 @@ import java.time.LocalDateTime;
 @Builder
 public class RegionDto implements Serializable {
 
-    private Integer idRegion;
+    private Integer idregion;
 
     @Size(min = 1, max = 60)
     @NotEmpty(message = "Nombre requerido!")
     private String nombre;
 
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @NotNull(message = "País requerido!")
     private Pais pais;

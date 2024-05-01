@@ -20,13 +20,13 @@ public class Ciudad implements Serializable {
     @Id
     @Column(name = "idciudad")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCiudad;
+    private Integer idciudad;
 
     @Column(name = "nombre")
     private String nombre;
 
     @Column(name = "fecharegistro")
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @Column(name = "imagen")
     private byte[] imagen;

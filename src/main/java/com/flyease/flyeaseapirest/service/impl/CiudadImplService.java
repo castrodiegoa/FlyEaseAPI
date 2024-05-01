@@ -38,9 +38,9 @@ public class CiudadImplService implements ICiudadService {
                 ciudadDto.getImagen());
 
         Ciudad ciudad = Ciudad.builder()
-                .idCiudad(ciudadDto.getIdCiudad())
+                .idciudad(ciudadDto.getIdciudad())
                 .nombre(ciudadDto.getNombre())
-                .fechaRegistro(ciudadDto.getFechaRegistro())
+                .fecharegistro(ciudadDto.getFecharegistro())
                 .imagen(ciudadDto.getImagen())
                 .region(ciudadDto.getRegion())
                 .build();
@@ -50,15 +50,15 @@ public class CiudadImplService implements ICiudadService {
     @Transactional
     public Ciudad update(CiudadDto ciudadDto) {
         jdbcTemplate.update("CALL p_actualizar_ciudad(?, ?, ?, ?)",
-                ciudadDto.getIdCiudad(),
+                ciudadDto.getIdciudad(),
                 ciudadDto.getNombre(),
-                ciudadDto.getRegion().getIdRegion(),
+                ciudadDto.getRegion().getIdregion(),
                 ciudadDto.getImagen());
 
         Ciudad ciudad = Ciudad.builder()
-                .idCiudad(ciudadDto.getIdCiudad())
+                .idciudad(ciudadDto.getIdciudad())
                 .nombre(ciudadDto.getNombre())
-                .fechaRegistro(ciudadDto.getFechaRegistro())
+                .fecharegistro(ciudadDto.getFecharegistro())
                 .imagen(ciudadDto.getImagen())
                 .region(ciudadDto.getRegion())
                 .build();
@@ -75,7 +75,7 @@ public class CiudadImplService implements ICiudadService {
     @Transactional
     @Override
     public void delete(Ciudad ciudad) {
-        jdbcTemplate.update("CALL p_eliminar_ciudad(?)", ciudad.getIdCiudad());
+        jdbcTemplate.update("CALL p_eliminar_ciudad(?)", ciudad.getIdciudad());
     }
 
     @Override

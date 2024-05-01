@@ -20,19 +20,19 @@ public class Vuelo implements Serializable {
     @Id
     @Column(name = "idvuelo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idVuelo;
+    private Integer idvuelo;
 
     @Column(name = "preciovuelo")
-    private Double precioVuelo;
+    private Double preciovuelo;
 
     @Column(name = "tarifatemporada")
-    private Double tarifaTemporada;
+    private Double tarifatemporada;
 
     @Column(name = "descuento")
     private Double descuento;
 
     @Column(name = "distanciarecorrida")
-    private Double distanciaRecorrida;
+    private Double distanciarecorrida;
 
     @Column(name = "fechayhorallegada")
     private LocalDateTime fechayhorallegada;
@@ -44,15 +44,15 @@ public class Vuelo implements Serializable {
     private Boolean cupo;
 
     @Column(name = "fecharegistro")
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "iddespegue")
-    private Aeropuerto aeropuertoDespegue;
+    private Aeropuerto aeropuerto_Despegue;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "iddestino")
-    private Aeropuerto aeropuertoDestino;
+    private Aeropuerto aeropuerto_Destino;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idestado")
@@ -62,8 +62,8 @@ public class Vuelo implements Serializable {
     @JoinColumn(name = "idavion")
     private Avion avion;
 
-    //@OneToMany(mappedBy = "vuelo", fetch = FetchType.LAZY)
-    //@JsonIgnore
-    //private List<Boleto> boletos;
+    @OneToMany(mappedBy = "vuelo", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Boleto> boletos;
 
 }

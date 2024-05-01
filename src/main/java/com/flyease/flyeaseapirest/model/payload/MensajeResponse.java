@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class MensajeResponse implements Serializable {
 
     private String mensaje;
-    private Boolean sucess;
+    private Boolean success;
     private Object response;
 
 }

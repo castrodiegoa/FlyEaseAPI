@@ -20,13 +20,13 @@ public class Pais implements Serializable {
     @Id
     @Column(name = "idpais")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idPais;
+    private Integer idpais;
 
     @Column(name = "nombre")
     private String nombre;
 
     @Column(name = "fecharegistro")
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @OneToMany(mappedBy = "pais", fetch = FetchType.LAZY)
     @JsonIgnore

@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Builder
 public class AerolineaDto implements Serializable {
 
-    private Integer idAerolinea;
+    private Integer idaereolinea;
 
     @Size(min = 1, max = 60)
     @NotEmpty(message = "Nombre requerido!")
@@ -25,11 +25,11 @@ public class AerolineaDto implements Serializable {
 
     @Size(min = 2, max = 2)
     @NotEmpty(message = "Código IATA requerido!")
-    private String codigoIATA;
+    private String codigoiata;
 
     @Size(min = 3, max = 3)
     @NotEmpty(message = "Código ICAO requerido!")
-    private String codigoICAO;
+    private String codigoicao;
 
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 }

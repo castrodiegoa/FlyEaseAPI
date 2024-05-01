@@ -23,7 +23,7 @@ public class AvionDto implements Serializable {
 
     @Size(min = 1, max = 10)
     @NotEmpty(message = "Id requerido!")
-    private String idAvion;
+    private String idavion;
 
     @Size(min = 1, max = 50)
     @NotEmpty(message = "Nombre requerido!")
@@ -37,15 +37,15 @@ public class AvionDto implements Serializable {
     @NotEmpty(message = "Fabricante requerido!")
     private String fabricante;
 
-    private Double velocidadPromedio;
+    private Double velocidadpromedio;
 
-    private Integer cantidadPasajeros;
+    private Integer cantidadpasajeros;
 
-    private Double cantidadCarga;
+    private Double cantidadcarga;
 
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @NotNull(message = "Aerolínea requerida!")
-    private Aerolinea aerolinea;
+    private Aerolinea aereolinea;
 
 }

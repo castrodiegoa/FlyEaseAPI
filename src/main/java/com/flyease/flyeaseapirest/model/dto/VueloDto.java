@@ -17,15 +17,15 @@ import java.time.LocalDateTime;
 @Builder
 public class VueloDto implements Serializable {
 
-    private Integer idVuelo;
+    private Integer idvuelo;
 
-    private Double precioVuelo;
+    private Double preciovuelo;
 
-    private Double tarifaTemporada;
+    private Double tarifatemporada;
 
     private Double descuento;
 
-    private Double distanciaRecorrida;
+    private Double distanciarecorrida;
 
     private LocalDateTime fechayhorallegada;
 
@@ -33,13 +33,13 @@ public class VueloDto implements Serializable {
 
     private Boolean cupo;
 
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @NotNull(message = "Aeropuerto de despegue requerido!")
-    private Aeropuerto aeropuertoDespegue;
+    private Aeropuerto aeropuerto_Despegue;
 
     @NotNull(message = "Aeropuerto de destino requerido!")
-    private Aeropuerto aeropuertoDestino;
+    private Aeropuerto aeropuerto_Destino;
 
     @NotNull(message = "Estado requerido!")
     private Estado estado;

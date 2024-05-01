@@ -18,13 +18,13 @@ import java.time.LocalDateTime;
 @Builder
 public class AsientoDto implements Serializable {
 
-    private Integer idAsiento;
+    private Integer idasiento;
 
     private Integer posicion;
 
     private Boolean disponibilidad;
 
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @NotNull(message = "Avión requerido!")
     private Avion avion;

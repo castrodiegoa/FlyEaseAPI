@@ -1,11 +1,8 @@
 package com.flyease.flyeaseapirest.service.impl;
 
 import com.flyease.flyeaseapirest.model.dao.BoletoDao;
-import com.flyease.flyeaseapirest.model.dao.RegionDao;
 import com.flyease.flyeaseapirest.model.dto.BoletoDto;
-import com.flyease.flyeaseapirest.model.dto.RegionDto;
 import com.flyease.flyeaseapirest.model.entity.Boleto;
-import com.flyease.flyeaseapirest.model.entity.Region;
 import com.flyease.flyeaseapirest.service.IBoletoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,18 +31,18 @@ public class BoletoImplService implements IBoletoService {
         jdbcTemplate.update("CALL p_insertar_boleto(?, ?, ?, ?)",
                 boletoDto.getDescuento(),
                 boletoDto.getCliente().getNumerodocumento(),
-                boletoDto.getAsiento().getIdAsiento(),
-                boletoDto.getVuelo().getIdVuelo());
+                boletoDto.getAsiento().getIdasiento(),
+                boletoDto.getVuelo().getIdvuelo());
 
         Boleto boleto = Boleto.builder()
-                .idBoleto(boletoDto.getIdBoleto())
+                .idboleto(boletoDto.getIdboleto())
                 .precio(boletoDto.getPrecio())
                 .descuento(boletoDto.getDescuento())
-                .precioTotal(boletoDto.getPrecioTotal())
+                .preciototal(boletoDto.getPreciototal())
                 .cliente(boletoDto.getCliente())
                 .asiento(boletoDto.getAsiento())
                 .vuelo(boletoDto.getVuelo())
-                .fechaRegistro(boletoDto.getFechaRegistro())
+                .fecharegistro(boletoDto.getFecharegistro())
                 .build();
         return boleto;
     }
@@ -53,23 +50,23 @@ public class BoletoImplService implements IBoletoService {
     @Transactional
     public Boleto update(BoletoDto boletoDto) {
         jdbcTemplate.update("CALL p_actualizar_boleto(?, ?, ?, ?, ?, ?, ?)",
-                boletoDto.getIdBoleto(),
+                boletoDto.getIdboleto(),
                 boletoDto.getPrecio(),
                 boletoDto.getDescuento(),
-                boletoDto.getPrecioTotal(),
+                boletoDto.getPreciototal(),
                 boletoDto.getCliente().getNumerodocumento(),
-                boletoDto.getAsiento().getIdAsiento(),
-                boletoDto.getVuelo().getIdVuelo());
+                boletoDto.getAsiento().getIdasiento(),
+                boletoDto.getVuelo().getIdvuelo());
 
         Boleto boleto = Boleto.builder()
-                .idBoleto(boletoDto.getIdBoleto())
+                .idboleto(boletoDto.getIdboleto())
                 .precio(boletoDto.getPrecio())
                 .descuento(boletoDto.getDescuento())
-                .precioTotal(boletoDto.getPrecioTotal())
+                .preciototal(boletoDto.getPreciototal())
                 .cliente(boletoDto.getCliente())
                 .asiento(boletoDto.getAsiento())
                 .vuelo(boletoDto.getVuelo())
-                .fechaRegistro(boletoDto.getFechaRegistro())
+                .fecharegistro(boletoDto.getFecharegistro())
                 .build();
         return boleto;
     }
@@ -84,7 +81,7 @@ public class BoletoImplService implements IBoletoService {
     @Transactional
     @Override
     public void delete(Boleto boleto) {
-        jdbcTemplate.update("CALL p_eliminar_boleto(?)", boleto.getIdBoleto());
+        jdbcTemplate.update("CALL p_eliminar_boleto(?)", boleto.getIdboleto());
     }
 
     @Override

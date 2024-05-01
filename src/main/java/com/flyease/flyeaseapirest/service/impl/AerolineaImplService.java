@@ -33,15 +33,15 @@ public class AerolineaImplService implements IAerolineaService {
     public Aerolinea save(AerolineaDto aerolineaDto) {
         jdbcTemplate.update("CALL p_insertar_aereolinea(?, ?, ?)",
                 aerolineaDto.getNombre(),
-                aerolineaDto.getCodigoIATA(),
-                aerolineaDto.getCodigoICAO());
+                aerolineaDto.getCodigoiata(),
+                aerolineaDto.getCodigoicao());
 
         Aerolinea aerolinea = Aerolinea.builder()
-                .idAerolinea(aerolineaDto.getIdAerolinea())
+                .idaereolinea(aerolineaDto.getIdaereolinea())
                 .nombre(aerolineaDto.getNombre())
-                .codigoIATA(aerolineaDto.getCodigoIATA())
-                .codigoICAO(aerolineaDto.getCodigoICAO())
-                .fechaRegistro(aerolineaDto.getFechaRegistro())
+                .codigoiata(aerolineaDto.getCodigoiata())
+                .codigoicao(aerolineaDto.getCodigoicao())
+                .fecharegistro(aerolineaDto.getFecharegistro())
                 .build();
         return aerolinea;
     }
@@ -49,17 +49,17 @@ public class AerolineaImplService implements IAerolineaService {
     @Transactional
     public Aerolinea update(AerolineaDto aerolineaDto) {
         jdbcTemplate.update("CALL p_actualizar_aereolinea(?, ?, ?, ?)",
-                aerolineaDto.getIdAerolinea(),
+                aerolineaDto.getIdaereolinea(),
                 aerolineaDto.getNombre(),
-                aerolineaDto.getCodigoIATA(),
-                aerolineaDto.getCodigoICAO());
+                aerolineaDto.getCodigoiata(),
+                aerolineaDto.getCodigoicao());
 
         Aerolinea aerolinea = Aerolinea.builder()
-                .idAerolinea(aerolineaDto.getIdAerolinea())
+                .idaereolinea(aerolineaDto.getIdaereolinea())
                 .nombre(aerolineaDto.getNombre())
-                .codigoIATA(aerolineaDto.getCodigoIATA())
-                .codigoICAO(aerolineaDto.getCodigoICAO())
-                .fechaRegistro(aerolineaDto.getFechaRegistro())
+                .codigoiata(aerolineaDto.getCodigoiata())
+                .codigoicao(aerolineaDto.getCodigoicao())
+                .fecharegistro(aerolineaDto.getFecharegistro())
                 .build();
         return aerolinea;
     }
@@ -73,7 +73,7 @@ public class AerolineaImplService implements IAerolineaService {
     @Transactional
     @Override
     public void delete(Aerolinea aerolinea) {
-        jdbcTemplate.update("CALL p_eliminar_aereolinea(?)", aerolinea.getIdAerolinea());
+        jdbcTemplate.update("CALL p_eliminar_aereolinea(?)", aerolinea.getIdaereolinea());
     }
 
     @Override

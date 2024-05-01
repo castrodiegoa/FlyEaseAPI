@@ -36,7 +36,7 @@ public class AeropuertoController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(getList)
                         .build()
                 , HttpStatus.OK);
@@ -53,11 +53,11 @@ public class AeropuertoController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(AeropuertoDto.builder()
-                                .idAeropuerto(aeropuerto.getIdAeropuerto())
+                                .idaeropuerto(aeropuerto.getIdaereopuerto())
                                 .nombre(aeropuerto.getNombre())
-                                .fechaRegistro(aeropuerto.getFechaRegistro())
+                                .fecharegistro(aeropuerto.getFechaRegistro())
                                 .ciudad(aeropuerto.getCiudad())
                                 .coordenadas(aeropuerto.getCoordenadas())
                                 .build())
@@ -72,11 +72,11 @@ public class AeropuertoController {
             aeropuertoSave = aeropuertoService.save(aeropuertoDto);
             return new ResponseEntity<>(MensajeResponse.builder()
                     .mensaje("Guardado correctamente")
-                    .sucess(true)
+                    .success(true)
                     .response(AeropuertoDto.builder()
-                            .idAeropuerto(aeropuertoSave.getIdAeropuerto())
+                            .idaeropuerto(aeropuertoSave.getIdaereopuerto())
                             .nombre(aeropuertoSave.getNombre())
-                            .fechaRegistro(aeropuertoSave.getFechaRegistro())
+                            .fecharegistro(aeropuertoSave.getFechaRegistro())
                             .ciudad(aeropuertoSave.getCiudad())
                             .coordenadas(aeropuertoSave.getCoordenadas())
                             .build())
@@ -92,15 +92,15 @@ public class AeropuertoController {
         Aeropuerto aeropuertoUpdate = null;
         try {
             if (aeropuertoService.existsById(id)) {
-                aeropuertoDto.setIdAeropuerto(id);
+                aeropuertoDto.setIdaeropuerto(id);
                 aeropuertoUpdate = aeropuertoService.update(aeropuertoDto);
                 return new ResponseEntity<>(MensajeResponse.builder()
                         .mensaje("Actualizado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .response(AeropuertoDto.builder()
-                                .idAeropuerto(aeropuertoUpdate.getIdAeropuerto())
+                                .idaeropuerto(aeropuertoUpdate.getIdaereopuerto())
                                 .nombre(aeropuertoUpdate.getNombre())
-                                .fechaRegistro(aeropuertoUpdate.getFechaRegistro())
+                                .fecharegistro(aeropuertoUpdate.getFechaRegistro())
                                 .ciudad(aeropuertoUpdate.getCiudad())
                                 .coordenadas(aeropuertoUpdate.getCoordenadas())
                                 .build())
@@ -122,7 +122,7 @@ public class AeropuertoController {
                 aeropuertoService.delete(aeropuertoDelete);
                 return new ResponseEntity<>(ApiResponse.builder()
                         .mensaje("Eliminado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .build()
                         , HttpStatus.OK);
             }

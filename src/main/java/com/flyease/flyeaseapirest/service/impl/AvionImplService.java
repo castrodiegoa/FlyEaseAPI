@@ -29,25 +29,25 @@ public class AvionImplService implements IAvionService {
     @Override
     public Avion save(AvionDto avionDto) {
         jdbcTemplate.update("CALL p_insertar_avion(?, ?, ?, ?, ?, ?, ?, ?)",
-                avionDto.getIdAvion(),
+                avionDto.getIdavion(),
                 avionDto.getNombre(),
                 avionDto.getModelo(),
                 avionDto.getFabricante(),
-                avionDto.getVelocidadPromedio(),
-                avionDto.getCantidadPasajeros(),
-                avionDto.getCantidadCarga(),
-                avionDto.getAerolinea().getIdAerolinea());
+                avionDto.getVelocidadpromedio(),
+                avionDto.getCantidadpasajeros(),
+                avionDto.getCantidadcarga(),
+                avionDto.getAereolinea().getIdaereolinea());
 
         Avion avion = Avion.builder()
-                .idavion(avionDto.getIdAvion())
+                .idavion(avionDto.getIdavion())
                 .nombre(avionDto.getNombre())
                 .modelo(avionDto.getModelo())
                 .fabricante(avionDto.getFabricante())
-                .velocidadPromedio(avionDto.getVelocidadPromedio())
-                .cantidadPasajeros(avionDto.getCantidadPasajeros())
-                .cantidadCarga(avionDto.getCantidadCarga())
-                .aerolinea(avionDto.getAerolinea())
-                .fechaRegistro(avionDto.getFechaRegistro())
+                .velocidadpromedio(avionDto.getVelocidadpromedio())
+                .cantidadpasajeros(avionDto.getCantidadpasajeros())
+                .cantidadcarga(avionDto.getCantidadcarga())
+                .aereolinea(avionDto.getAereolinea())
+                .fecharegistro(avionDto.getFecharegistro())
                 .build();
         return avion;
     }
@@ -56,25 +56,25 @@ public class AvionImplService implements IAvionService {
     public Avion update(AvionDto avionDto, String IdAvionAntiguo) {
         jdbcTemplate.update("CALL p_actualizar_avion(?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 IdAvionAntiguo,
-                avionDto.getIdAvion(),
+                avionDto.getIdavion(),
                 avionDto.getNombre(),
                 avionDto.getModelo(),
                 avionDto.getFabricante(),
-                avionDto.getVelocidadPromedio(),
-                avionDto.getCantidadPasajeros(),
-                avionDto.getCantidadCarga(),
-                avionDto.getAerolinea().getIdAerolinea());
+                avionDto.getVelocidadpromedio(),
+                avionDto.getCantidadpasajeros(),
+                avionDto.getCantidadcarga(),
+                avionDto.getAereolinea().getIdaereolinea());
 
         Avion avion = Avion.builder()
-                .idavion(avionDto.getIdAvion())
+                .idavion(avionDto.getIdavion())
                 .nombre(avionDto.getNombre())
                 .modelo(avionDto.getModelo())
                 .fabricante(avionDto.getFabricante())
-                .velocidadPromedio(avionDto.getVelocidadPromedio())
-                .cantidadPasajeros(avionDto.getCantidadPasajeros())
-                .cantidadCarga(avionDto.getCantidadCarga())
-                .aerolinea(avionDto.getAerolinea())
-                .fechaRegistro(avionDto.getFechaRegistro())
+                .velocidadpromedio(avionDto.getVelocidadpromedio())
+                .cantidadpasajeros(avionDto.getCantidadpasajeros())
+                .cantidadcarga(avionDto.getCantidadcarga())
+                .aereolinea(avionDto.getAereolinea())
+                .fecharegistro(avionDto.getFecharegistro())
                 .build();
         return avion;
     }

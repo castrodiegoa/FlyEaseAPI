@@ -35,18 +35,18 @@ public class CategoriaImplService implements ICategoriaService {
         jdbcTemplate.update("CALL p_insertar_categoria(?, ?, ?, ?, ?)",
                 categoriaDto.getNombre(),
                 categoriaDto.getDescripcion(),
-                categoriaDto.getEstadoCategoria(),
+                categoriaDto.getEstadocategoria(),
                 categoriaDto.getTarifa(),
                 categoriaDto.getComercial());
 
         Categoria categoria = Categoria.builder()
-                .idCategoria(categoriaDto.getIdCategoria())
+                .idcategoria(categoriaDto.getIdcategoria())
                 .nombre(categoriaDto.getNombre())
                 .descripcion(categoriaDto.getDescripcion())
-                .estadoCategoria(categoriaDto.getEstadoCategoria())
+                .estadocategoria(categoriaDto.getEstadocategoria())
                 .tarifa(categoriaDto.getTarifa())
                 .comercial(categoriaDto.getComercial())
-                .fechaRegistro(categoriaDto.getFechaRegistro())
+                .fecharegistro(categoriaDto.getFecharegistro())
                 .build();
         return categoria;
     }
@@ -54,21 +54,21 @@ public class CategoriaImplService implements ICategoriaService {
     @Transactional
     public Categoria update(CategoriaDto categoriaDto) {
         jdbcTemplate.update("CALL p_actualizar_categoria(?, ?, ?, ?, ?, ?)",
-                categoriaDto.getIdCategoria(),
+                categoriaDto.getIdcategoria(),
                 categoriaDto.getNombre(),
                 categoriaDto.getDescripcion(),
-                categoriaDto.getEstadoCategoria(),
+                categoriaDto.getEstadocategoria(),
                 categoriaDto.getTarifa(),
                 categoriaDto.getComercial());
 
         Categoria categoria = Categoria.builder()
-                .idCategoria(categoriaDto.getIdCategoria())
+                .idcategoria(categoriaDto.getIdcategoria())
                 .nombre(categoriaDto.getNombre())
                 .descripcion(categoriaDto.getDescripcion())
-                .estadoCategoria(categoriaDto.getEstadoCategoria())
+                .estadocategoria(categoriaDto.getEstadocategoria())
                 .tarifa(categoriaDto.getTarifa())
                 .comercial(categoriaDto.getComercial())
-                .fechaRegistro(categoriaDto.getFechaRegistro())
+                .fecharegistro(categoriaDto.getFecharegistro())
                 .build();
         return categoria;
     }
@@ -82,7 +82,7 @@ public class CategoriaImplService implements ICategoriaService {
     @Transactional
     @Override
     public void delete(Categoria categoria) {
-        jdbcTemplate.update("CALL p_eliminar_categoria(?)", categoria.getIdCategoria());
+        jdbcTemplate.update("CALL p_eliminar_categoria(?)", categoria.getIdcategoria());
     }
 
     @Override

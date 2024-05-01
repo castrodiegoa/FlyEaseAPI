@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Builder
 public class EstadoDto implements Serializable {
 
-    private Integer idEstado;
+    private Integer idestado;
 
     @Size(min = 1, max = 20)
     @NotEmpty(message = "Nombre requerido!")
@@ -27,7 +27,7 @@ public class EstadoDto implements Serializable {
     @Size(max = 200)
     private String descripcion;
 
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     private Boolean detencion;
 

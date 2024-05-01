@@ -41,9 +41,9 @@ public class AeropuertoImplService implements IAeropuertoService {
                 aeropuertoDto.getCiudad().getImagen());
 
         Aeropuerto aeropuerto = Aeropuerto.builder()
-                .idAeropuerto(aeropuertoDto.getIdAeropuerto())
+                .idaereopuerto(aeropuertoDto.getIdaeropuerto())
                 .nombre(aeropuertoDto.getNombre())
-                .fechaRegistro(aeropuertoDto.getFechaRegistro())
+                .fechaRegistro(aeropuertoDto.getFecharegistro())
                 .ciudad(aeropuertoDto.getCiudad())
                 .coordenadas(aeropuertoDto.getCoordenadas())
                 .build();
@@ -53,7 +53,7 @@ public class AeropuertoImplService implements IAeropuertoService {
     @Transactional
     public Aeropuerto update(AeropuertoDto aeropuertoDto) {
         jdbcTemplate.update("CALL p_actualizar_aereopuerto(?, ?, ?, ?, ?, ?, ?, ?)",
-                aeropuertoDto.getIdAeropuerto(),
+                aeropuertoDto.getIdaeropuerto(),
                 aeropuertoDto.getNombre(),
                 aeropuertoDto.getCiudad().getNombre(),
                 aeropuertoDto.getCiudad().getRegion().getNombre(),
@@ -63,9 +63,9 @@ public class AeropuertoImplService implements IAeropuertoService {
                 aeropuertoDto.getCiudad().getImagen());
 
         Aeropuerto aeropuerto = Aeropuerto.builder()
-                .idAeropuerto(aeropuertoDto.getIdAeropuerto())
+                .idaereopuerto(aeropuertoDto.getIdaeropuerto())
                 .nombre(aeropuertoDto.getNombre())
-                .fechaRegistro(aeropuertoDto.getFechaRegistro())
+                .fechaRegistro(aeropuertoDto.getFecharegistro())
                 .ciudad(aeropuertoDto.getCiudad())
                 .coordenadas(aeropuertoDto.getCoordenadas())
                 .build();
@@ -82,7 +82,7 @@ public class AeropuertoImplService implements IAeropuertoService {
     @Transactional
     @Override
     public void delete(Aeropuerto aeropuerto) {
-        jdbcTemplate.update("CALL p_eliminar_aereopuerto(?)", aeropuerto.getIdAeropuerto());
+        jdbcTemplate.update("CALL p_eliminar_aereopuerto(?)", aeropuerto.getIdaereopuerto());
     }
 
     @Override

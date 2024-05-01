@@ -19,7 +19,7 @@ public class Coordenadas implements Serializable {
     @Id
     @Column(name = "idcoordenada")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCoordenada;
+    private Integer idcoordenada;
 
     @Column(name = "latitud")
     private Double latitud;
@@ -28,7 +28,7 @@ public class Coordenadas implements Serializable {
     private Double longitud;
 
     @Column(name = "fecharegistro")
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @OneToOne(mappedBy = "coordenadas", fetch = FetchType.LAZY)
     @JsonIgnore

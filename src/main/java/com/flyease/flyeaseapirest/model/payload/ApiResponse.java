@@ -13,11 +13,11 @@ import java.util.Date;
 public class ApiResponse {
 
     private String mensaje;
-    private Boolean sucess;
+    private Boolean success;
 
-    public ApiResponse(String mensaje, Boolean sucess) {
+    public ApiResponse(String mensaje, Boolean success) {
         this.mensaje = mensaje;
-        this.sucess = sucess;
+        this.success = success;
     }
 
 }

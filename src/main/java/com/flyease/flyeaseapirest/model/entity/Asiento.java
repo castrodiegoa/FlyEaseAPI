@@ -20,7 +20,7 @@ public class Asiento implements Serializable {
     @Id
     @Column(name = "idasiento")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idAsiento;
+    private Integer idasiento;
 
     @Column(name = "posicion")
     private Integer posicion;
@@ -29,7 +29,7 @@ public class Asiento implements Serializable {
     private Boolean disponibilidad;
 
     @Column(name = "fecharegistro")
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idavion")
@@ -39,8 +39,8 @@ public class Asiento implements Serializable {
     @JoinColumn(name = "idcategoria")
     private Categoria categoria;
 
-    //@OneToMany(mappedBy = "asiento", fetch = FetchType.LAZY)
-    //@JsonIgnore
-    //private List<Boleto> boletos;
+    @OneToMany(mappedBy = "asiento", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Boleto> boletos;
 
 }

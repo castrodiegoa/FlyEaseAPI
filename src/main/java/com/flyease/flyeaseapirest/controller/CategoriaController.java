@@ -36,7 +36,7 @@ public class CategoriaController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(getList)
                         .build()
                 , HttpStatus.OK);
@@ -53,15 +53,15 @@ public class CategoriaController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(CategoriaDto.builder()
-                                .idCategoria(categoria.getIdCategoria())
+                                .idcategoria(categoria.getIdcategoria())
                                 .nombre(categoria.getNombre())
                                 .descripcion(categoria.getDescripcion())
-                                .estadoCategoria(categoria.getEstadoCategoria())
+                                .estadocategoria(categoria.getEstadocategoria())
                                 .tarifa(categoria.getTarifa())
                                 .comercial(categoria.getComercial())
-                                .fechaRegistro(categoria.getFechaRegistro())
+                                .fecharegistro(categoria.getFecharegistro())
                                 .build())
                         .build()
                 , HttpStatus.OK);
@@ -74,15 +74,15 @@ public class CategoriaController {
             categoriaSave = categoriaService.save(categoriaDto);
             return new ResponseEntity<>(MensajeResponse.builder()
                     .mensaje("Guardado correctamente")
-                    .sucess(true)
+                    .success(true)
                     .response(CategoriaDto.builder()
-                            .idCategoria(categoriaSave.getIdCategoria())
+                            .idcategoria(categoriaSave.getIdcategoria())
                             .nombre(categoriaSave.getNombre())
                             .descripcion(categoriaSave.getDescripcion())
-                            .estadoCategoria(categoriaSave.getEstadoCategoria())
+                            .estadocategoria(categoriaSave.getEstadocategoria())
                             .tarifa(categoriaSave.getTarifa())
                             .comercial(categoriaSave.getComercial())
-                            .fechaRegistro(categoriaSave.getFechaRegistro())
+                            .fecharegistro(categoriaSave.getFecharegistro())
                             .build())
                     .build()
                     , HttpStatus.CREATED);
@@ -96,19 +96,19 @@ public class CategoriaController {
         Categoria categoriaUpdate = null;
         try {
             if (categoriaService.existsById(id)) {
-                categoriaDto.setIdCategoria(id);
+                categoriaDto.setIdcategoria(id);
                 categoriaUpdate = categoriaService.update(categoriaDto);
                 return new ResponseEntity<>(MensajeResponse.builder()
                         .mensaje("Actualizado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .response(CategoriaDto.builder()
-                                .idCategoria(categoriaUpdate.getIdCategoria())
+                                .idcategoria(categoriaUpdate.getIdcategoria())
                                 .nombre(categoriaUpdate.getNombre())
                                 .descripcion(categoriaUpdate.getDescripcion())
-                                .estadoCategoria(categoriaUpdate.getEstadoCategoria())
+                                .estadocategoria(categoriaUpdate.getEstadocategoria())
                                 .tarifa(categoriaUpdate.getTarifa())
                                 .comercial(categoriaUpdate.getComercial())
-                                .fechaRegistro(categoriaUpdate.getFechaRegistro())
+                                .fecharegistro(categoriaUpdate.getFecharegistro())
                                 .build())
                         .build()
                         , HttpStatus.CREATED);
@@ -128,7 +128,7 @@ public class CategoriaController {
                 categoriaService.delete(categoriaDelete);
                 return new ResponseEntity<>(ApiResponse.builder()
                         .mensaje("Eliminado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .build()
                         , HttpStatus.OK);
             }

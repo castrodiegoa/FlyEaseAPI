@@ -1,10 +1,12 @@
 package com.flyease.flyeaseapirest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -29,23 +31,23 @@ public class Avion implements Serializable {
     private String fabricante;
 
     @Column(name = "velocidadpromedio")
-    private Double velocidadPromedio;
+    private Double velocidadpromedio;
 
     @Column(name = "cantidadpasajeros")
-    private Integer cantidadPasajeros;
+    private Integer cantidadpasajeros;
 
     @Column(name = "cantidadcarga")
-    private Double cantidadCarga;
+    private Double cantidadcarga;
 
     @Column(name = "fecharegistro")
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idaereolinea")
-    private Aerolinea aerolinea;
+    private Aerolinea aereolinea;
 
-    //@OneToMany(mappedBy = "avion", fetch = FetchType.LAZY)
-    //@JsonIgnore
-    //private List<Vuelo> vuelos;
+    @OneToMany(mappedBy = "avion", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Vuelo> vuelos;
 
 }

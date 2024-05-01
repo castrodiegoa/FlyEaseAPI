@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 @Builder
 public class PaisDto implements Serializable {
 
-    private Integer idPais;
+    private Integer idpais;
 
     @Size(min = 1, max = 60)
     @NotEmpty(message = "Nombre requerido!")
     private String nombre;
 
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
 }

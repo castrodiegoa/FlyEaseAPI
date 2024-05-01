@@ -1,10 +1,12 @@
 package com.flyease.flyeaseapirest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,7 +20,7 @@ public class Categoria implements Serializable {
     @Id
     @Column(name = "idcategoria")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCategoria;
+    private Integer idcategoria;
 
     @Column(name = "nombre")
     private String nombre;
@@ -27,7 +29,7 @@ public class Categoria implements Serializable {
     private String descripcion;
 
     @Column(name = "estadocategoria")
-    private Boolean estadoCategoria;
+    private Boolean estadocategoria;
 
     @Column(name = "tarifa")
     private Double tarifa;
@@ -36,10 +38,10 @@ public class Categoria implements Serializable {
     private Boolean comercial;
 
     @Column(name = "fecharegistro")
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
-    //@OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
-    //@JsonIgnore
-    //private List<Asiento> asientos;
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Asiento> asientos;
 
 }

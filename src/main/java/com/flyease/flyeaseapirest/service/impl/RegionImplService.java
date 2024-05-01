@@ -30,9 +30,9 @@ public class RegionImplService implements IRegionService {
     public Region save(RegionDto regionDto) {
         jdbcTemplate.update("CALL p_insertar_region(?, ?)", regionDto.getNombre(), regionDto.getPais().getNombre());
         Region region = Region.builder()
-                .idRegion(regionDto.getIdRegion())
+                .idregion(regionDto.getIdregion())
                 .nombre(regionDto.getNombre())
-                .fechaRegistro(regionDto.getFechaRegistro())
+                .fecharegistro(regionDto.getFecharegistro())
                 .pais(regionDto.getPais())
                 .build();
         return region;
@@ -40,11 +40,11 @@ public class RegionImplService implements IRegionService {
 
     @Transactional
     public Region update(RegionDto regionDto) {
-        jdbcTemplate.update("CALL p_actualizar_region(?, ?, ?)", regionDto.getIdRegion(), regionDto.getNombre(), regionDto.getPais().getIdPais());
+        jdbcTemplate.update("CALL p_actualizar_region(?, ?, ?)", regionDto.getIdregion(), regionDto.getNombre(), regionDto.getPais().getIdpais());
         Region region = Region.builder()
-                .idRegion(regionDto.getIdRegion())
+                .idregion(regionDto.getIdregion())
                 .nombre(regionDto.getNombre())
-                .fechaRegistro(regionDto.getFechaRegistro())
+                .fecharegistro(regionDto.getFecharegistro())
                 .pais(regionDto.getPais())
                 .build();
         return region;
@@ -60,7 +60,7 @@ public class RegionImplService implements IRegionService {
     @Transactional
     @Override
     public void delete(Region region) {
-        jdbcTemplate.update("CALL p_eliminar_region(?)", region.getIdRegion());
+        jdbcTemplate.update("CALL p_eliminar_region(?)", region.getIdregion());
     }
 
     @Override

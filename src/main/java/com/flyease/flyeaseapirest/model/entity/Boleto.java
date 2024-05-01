@@ -21,7 +21,7 @@ public class Boleto implements Serializable {
     @Id
     @Column(name = "idboleto")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idBoleto;
+    private Integer idboleto;
 
     @Column(name = "precio")
     private Double precio;
@@ -30,10 +30,10 @@ public class Boleto implements Serializable {
     private Double descuento;
 
     @Column(name = "preciototal")
-    private Double precioTotal;
+    private Double preciototal;
 
     @Column(name = "fecharegistro")
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "numerodocumento")

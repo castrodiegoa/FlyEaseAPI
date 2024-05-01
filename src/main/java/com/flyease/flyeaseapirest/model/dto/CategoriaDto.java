@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 public class CategoriaDto implements Serializable {
 
-    private Integer idCategoria;
+    private Integer idcategoria;
 
     @Size(min = 1, max = 30)
     @NotEmpty(message = "Nombre requerido!")
@@ -24,12 +24,12 @@ public class CategoriaDto implements Serializable {
     @Size(max = 200)
     private String descripcion;
 
-    private Boolean estadoCategoria;
+    private Boolean estadocategoria;
 
     private Double tarifa;
 
     private Boolean comercial;
 
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
 }

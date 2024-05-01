@@ -36,7 +36,7 @@ public class RegionController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(getList)
                         .build()
                 , HttpStatus.OK);
@@ -53,11 +53,11 @@ public class RegionController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(RegionDto.builder()
-                                .idRegion(region.getIdRegion())
+                                .idregion(region.getIdregion())
                                 .nombre(region.getNombre())
-                                .fechaRegistro(region.getFechaRegistro())
+                                .fecharegistro(region.getFecharegistro())
                                 .pais(region.getPais())
                                 .build())
                         .build()
@@ -71,11 +71,11 @@ public class RegionController {
             regionSave = regionService.save(regionDto);
             return new ResponseEntity<>(MensajeResponse.builder()
                     .mensaje("Guardado correctamente")
-                    .sucess(true)
+                    .success(true)
                     .response(RegionDto.builder()
-                            .idRegion(regionSave.getIdRegion())
+                            .idregion(regionSave.getIdregion())
                             .nombre(regionSave.getNombre())
-                            .fechaRegistro(regionSave.getFechaRegistro())
+                            .fecharegistro(regionSave.getFecharegistro())
                             .pais(regionSave.getPais())
                             .build())
                     .build()
@@ -90,15 +90,15 @@ public class RegionController {
         Region regionUpdate = null;
         try {
             if (regionService.existsById(id)) {
-                regionDto.setIdRegion(id);
+                regionDto.setIdregion(id);
                 regionUpdate = regionService.update(regionDto);
                 return new ResponseEntity<>(MensajeResponse.builder()
                         .mensaje("Actualizado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .response(RegionDto.builder()
-                                .idRegion(regionUpdate.getIdRegion())
+                                .idregion(regionUpdate.getIdregion())
                                 .nombre(regionUpdate.getNombre())
-                                .fechaRegistro(regionUpdate.getFechaRegistro())
+                                .fecharegistro(regionUpdate.getFecharegistro())
                                 .pais(regionUpdate.getPais())
                                 .build())
                         .build()
@@ -119,7 +119,7 @@ public class RegionController {
                 regionService.delete(regionDelete);
                 return new ResponseEntity<>(ApiResponse.builder()
                         .mensaje("Eliminado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .build()
                         , HttpStatus.OK);
             }

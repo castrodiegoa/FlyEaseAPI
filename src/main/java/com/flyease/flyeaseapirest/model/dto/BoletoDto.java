@@ -20,15 +20,15 @@ import java.time.LocalDateTime;
 @Builder
 public class BoletoDto implements Serializable {
 
-    private Integer idBoleto;
+    private Integer idboleto;
 
     private Double precio;
 
     private Double descuento;
 
-    private Double precioTotal;
+    private Double preciototal;
 
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @NotNull(message = "Cliente requerido!")
     private Cliente cliente;

@@ -18,7 +18,7 @@ public class Aeropuerto implements Serializable {
     @Id
     @Column(name = "idaereopuerto")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idAeropuerto;
+    private Integer idaereopuerto;
 
     @Column(name = "nombre")
     private String nombre;

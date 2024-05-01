@@ -36,7 +36,7 @@ public class BoletoController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(getList)
                         .build()
                 , HttpStatus.OK);
@@ -53,16 +53,16 @@ public class BoletoController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(BoletoDto.builder()
-                                .idBoleto(boleto.getIdBoleto())
+                                .idboleto(boleto.getIdboleto())
                                 .precio(boleto.getPrecio())
                                 .descuento(boleto.getDescuento())
-                                .precioTotal(boleto.getPrecioTotal())
+                                .preciototal(boleto.getPreciototal())
                                 .cliente(boleto.getCliente())
                                 .asiento(boleto.getAsiento())
                                 .vuelo(boleto.getVuelo())
-                                .fechaRegistro(boleto.getFechaRegistro())
+                                .fecharegistro(boleto.getFecharegistro())
                                 .build())
                         .build()
                 , HttpStatus.OK);
@@ -75,16 +75,16 @@ public class BoletoController {
             boletoSave = boletoService.save(boletoDto);
             return new ResponseEntity<>(MensajeResponse.builder()
                     .mensaje("Guardado correctamente")
-                    .sucess(true)
+                    .success(true)
                     .response(BoletoDto.builder()
-                            .idBoleto(boletoSave.getIdBoleto())
+                            .idboleto(boletoSave.getIdboleto())
                             .precio(boletoSave.getPrecio())
                             .descuento(boletoSave.getDescuento())
-                            .precioTotal(boletoSave.getPrecioTotal())
+                            .preciototal(boletoSave.getPreciototal())
                             .cliente(boletoSave.getCliente())
                             .asiento(boletoSave.getAsiento())
                             .vuelo(boletoSave.getVuelo())
-                            .fechaRegistro(boletoSave.getFechaRegistro())
+                            .fecharegistro(boletoSave.getFecharegistro())
                             .build())
                     .build()
                     , HttpStatus.CREATED);
@@ -98,20 +98,20 @@ public class BoletoController {
         Boleto boletoUpdate = null;
         try {
             if (boletoService.existsById(id)) {
-                boletoDto.setIdBoleto(id);
+                boletoDto.setIdboleto(id);
                 boletoUpdate = boletoService.update(boletoDto);
                 return new ResponseEntity<>(MensajeResponse.builder()
                         .mensaje("Actualizado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .response(BoletoDto.builder()
-                                .idBoleto(boletoUpdate.getIdBoleto())
+                                .idboleto(boletoUpdate.getIdboleto())
                                 .precio(boletoUpdate.getPrecio())
                                 .descuento(boletoUpdate.getDescuento())
-                                .precioTotal(boletoUpdate.getPrecioTotal())
+                                .preciototal(boletoUpdate.getPreciototal())
                                 .cliente(boletoUpdate.getCliente())
                                 .asiento(boletoUpdate.getAsiento())
                                 .vuelo(boletoUpdate.getVuelo())
-                                .fechaRegistro(boletoUpdate.getFechaRegistro())
+                                .fecharegistro(boletoUpdate.getFecharegistro())
                                 .build())
                         .build()
                         , HttpStatus.CREATED);
@@ -131,7 +131,7 @@ public class BoletoController {
                 boletoService.delete(boletoDelete);
                 return new ResponseEntity<>(ApiResponse.builder()
                         .mensaje("Eliminado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .build()
                         , HttpStatus.OK);
             }

@@ -36,7 +36,7 @@ public class AsientoController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(getList)
                         .build()
                 , HttpStatus.OK);
@@ -53,12 +53,12 @@ public class AsientoController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(AsientoDto.builder()
-                                .idAsiento(asiento.getIdAsiento())
+                                .idasiento(asiento.getIdasiento())
                                 .posicion(asiento.getPosicion())
                                 .disponibilidad(asiento.getDisponibilidad())
-                                .fechaRegistro(asiento.getFechaRegistro())
+                                .fecharegistro(asiento.getFecharegistro())
                                 .avion(asiento.getAvion())
                                 .categoria(asiento.getCategoria())
                                 .build())
@@ -73,12 +73,12 @@ public class AsientoController {
             asientoSave = asientoService.save(asientoDto);
             return new ResponseEntity<>(MensajeResponse.builder()
                     .mensaje("Guardado correctamente")
-                    .sucess(true)
+                    .success(true)
                     .response(AsientoDto.builder()
-                            .idAsiento(asientoSave.getIdAsiento())
+                            .idasiento(asientoSave.getIdasiento())
                             .posicion(asientoSave.getPosicion())
                             .disponibilidad(asientoSave.getDisponibilidad())
-                            .fechaRegistro(asientoSave.getFechaRegistro())
+                            .fecharegistro(asientoSave.getFecharegistro())
                             .avion(asientoSave.getAvion())
                             .categoria(asientoSave.getCategoria())
                             .build())
@@ -94,16 +94,16 @@ public class AsientoController {
         Asiento asientoUpdate = null;
         try {
             if (asientoService.existsById(id)) {
-                asientoDto.setIdAsiento(id);
+                asientoDto.setIdasiento(id);
                 asientoUpdate = asientoService.update(asientoDto);
                 return new ResponseEntity<>(MensajeResponse.builder()
                         .mensaje("Actualizado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .response(AsientoDto.builder()
-                                .idAsiento(asientoUpdate.getIdAsiento())
+                                .idasiento(asientoUpdate.getIdasiento())
                                 .posicion(asientoUpdate.getPosicion())
                                 .disponibilidad(asientoUpdate.getDisponibilidad())
-                                .fechaRegistro(asientoUpdate.getFechaRegistro())
+                                .fecharegistro(asientoUpdate.getFecharegistro())
                                 .avion(asientoUpdate.getAvion())
                                 .categoria(asientoUpdate.getCategoria())
                                 .build())
@@ -125,7 +125,7 @@ public class AsientoController {
                 asientoService.delete(asientoDelete);
                 return new ResponseEntity<>(ApiResponse.builder()
                         .mensaje("Eliminado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .build()
                         , HttpStatus.OK);
             }

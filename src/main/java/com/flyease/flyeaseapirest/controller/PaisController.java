@@ -33,7 +33,7 @@ public class PaisController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(getList)
                         .build()
                 , HttpStatus.OK);
@@ -50,11 +50,11 @@ public class PaisController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(PaisDto.builder()
-                                .idPais(pais.getIdPais())
+                                .idpais(pais.getIdpais())
                                 .nombre(pais.getNombre())
-                                .fechaRegistro(pais.getFechaRegistro())
+                                .fecharegistro(pais.getFecharegistro())
                                 .build())
                         .build()
                 , HttpStatus.OK);
@@ -67,11 +67,11 @@ public class PaisController {
             paisSave = paisService.save(paisDto);
             return new ResponseEntity<>(MensajeResponse.builder()
                     .mensaje("Guardado correctamente")
-                    .sucess(true)
+                    .success(true)
                     .response(PaisDto.builder()
-                            .idPais(paisSave.getIdPais())
+                            .idpais(paisSave.getIdpais())
                             .nombre(paisSave.getNombre() )
-                            .fechaRegistro(paisSave.getFechaRegistro())
+                            .fecharegistro(paisSave.getFecharegistro())
                             .build())
                     .build()
                     , HttpStatus.CREATED);
@@ -85,15 +85,15 @@ public class PaisController {
         Pais paisUpdate = null;
         try {
             if (paisService.existsById(id)) {
-                paisDto.setIdPais(id);
+                paisDto.setIdpais(id);
                 paisUpdate = paisService.update(paisDto);
                 return new ResponseEntity<>(MensajeResponse.builder()
                         .mensaje("Actualizado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .response(PaisDto.builder()
-                                .idPais(paisUpdate.getIdPais())
+                                .idpais(paisUpdate.getIdpais())
                                 .nombre(paisUpdate.getNombre())
-                                .fechaRegistro(paisUpdate.getFechaRegistro())
+                                .fecharegistro(paisUpdate.getFecharegistro())
                                 .build())
                         .build()
                         , HttpStatus.CREATED);
@@ -113,7 +113,7 @@ public class PaisController {
                 paisService.delete(paisDelete);
                 return new ResponseEntity<>(ApiResponse.builder()
                         .mensaje("Eliminado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .build()
                         , HttpStatus.OK);
             }

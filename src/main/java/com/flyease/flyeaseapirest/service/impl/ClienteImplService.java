@@ -47,7 +47,7 @@ public class ClienteImplService implements IClienteService {
                 .apellidos(clienteDto.getApellidos())
                 .celular(clienteDto.getCelular())
                 .correo(clienteDto.getCorreo())
-                .fechaRegistro(clienteDto.getFechaRegistro())
+                .fecharegistro(clienteDto.getFecharegistro())
                 .build();
         return cliente;
     }
@@ -70,7 +70,7 @@ public class ClienteImplService implements IClienteService {
                 .apellidos(clienteDto.getApellidos())
                 .celular(clienteDto.getCelular())
                 .correo(clienteDto.getCorreo())
-                .fechaRegistro(clienteDto.getFechaRegistro())
+                .fecharegistro(clienteDto.getFecharegistro())
                 .build();
         return cliente;
     }

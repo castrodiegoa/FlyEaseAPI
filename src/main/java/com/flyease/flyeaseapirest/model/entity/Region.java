@@ -20,13 +20,13 @@ public class Region implements Serializable {
     @Id
     @Column(name = "idregion")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idRegion;
+    private Integer idregion;
 
     @Column(name = "nombre")
     private String nombre;
 
     @Column(name = "fecharegistro")
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idpais")

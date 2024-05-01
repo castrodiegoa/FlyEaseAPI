@@ -30,20 +30,20 @@ public class PaisImplService implements IPaisService {
     public Pais save(PaisDto paisDto) {
         jdbcTemplate.update("CALL p_insertar_pais(?)", paisDto.getNombre());
         Pais pais = Pais.builder()
-                .idPais(paisDto.getIdPais())
+                .idpais(paisDto.getIdpais())
                 .nombre(paisDto.getNombre())
-                .fechaRegistro(paisDto.getFechaRegistro())
+                .fecharegistro(paisDto.getFecharegistro())
                 .build();
         return pais;
     }
 
     @Transactional
     public Pais update(PaisDto paisDto) {
-        jdbcTemplate.update("CALL p_actualizar_pais(?, ?)", paisDto.getIdPais(), paisDto.getNombre());
+        jdbcTemplate.update("CALL p_actualizar_pais(?, ?)", paisDto.getIdpais(), paisDto.getNombre());
         Pais pais = Pais.builder()
-                .idPais(paisDto.getIdPais())
+                .idpais(paisDto.getIdpais())
                 .nombre(paisDto.getNombre())
-                .fechaRegistro(paisDto.getFechaRegistro())
+                .fecharegistro(paisDto.getFecharegistro())
                 .build();
         return pais;
     }
@@ -58,7 +58,7 @@ public class PaisImplService implements IPaisService {
     @Transactional
     @Override
     public void delete(Pais pais) {
-        jdbcTemplate.update("CALL p_eliminar_pais(?)", pais.getIdPais());
+        jdbcTemplate.update("CALL p_eliminar_pais(?)", pais.getIdpais());
     }
 
     @Override

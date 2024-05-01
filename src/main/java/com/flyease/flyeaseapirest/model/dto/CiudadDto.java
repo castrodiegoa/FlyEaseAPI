@@ -17,13 +17,13 @@ import java.time.LocalDateTime;
 @Builder
 public class CiudadDto implements Serializable {
 
-    private Integer idCiudad;
+    private Integer idciudad;
 
     @Size(min = 1, max = 60)
     @NotEmpty(message = "Nombre requerido!")
     private String nombre;
 
-    private LocalDateTime fechaRegistro;
+    private LocalDateTime fecharegistro;
 
     @NotEmpty(message = "Imagen requerida!")
     private byte[] imagen;

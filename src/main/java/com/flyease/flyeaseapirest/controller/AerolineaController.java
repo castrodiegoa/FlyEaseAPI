@@ -36,7 +36,7 @@ public class AerolineaController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(getList)
                         .build()
                 , HttpStatus.OK);
@@ -53,13 +53,13 @@ public class AerolineaController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(AerolineaDto.builder()
-                                .idAerolinea(aerolinea.getIdAerolinea())
+                                .idaereolinea(aerolinea.getIdaereolinea())
                                 .nombre(aerolinea.getNombre())
-                                .codigoIATA(aerolinea.getCodigoIATA())
-                                .codigoICAO(aerolinea.getCodigoICAO())
-                                .fechaRegistro(aerolinea.getFechaRegistro())
+                                .codigoiata(aerolinea.getCodigoiata())
+                                .codigoicao(aerolinea.getCodigoicao())
+                                .fecharegistro(aerolinea.getFecharegistro())
                                 .build())
                         .build()
                 , HttpStatus.OK);
@@ -72,13 +72,13 @@ public class AerolineaController {
             aerolineaSave = aerolineaService.save(aerolineaDto);
             return new ResponseEntity<>(MensajeResponse.builder()
                     .mensaje("Guardado correctamente")
-                    .sucess(true)
+                    .success(true)
                     .response(AerolineaDto.builder()
-                            .idAerolinea(aerolineaSave.getIdAerolinea())
+                            .idaereolinea(aerolineaSave.getIdaereolinea())
                             .nombre(aerolineaSave.getNombre())
-                            .codigoIATA(aerolineaSave.getCodigoIATA())
-                            .codigoICAO(aerolineaSave.getCodigoICAO())
-                            .fechaRegistro(aerolineaSave.getFechaRegistro())
+                            .codigoiata(aerolineaSave.getCodigoiata())
+                            .codigoicao(aerolineaSave.getCodigoicao())
+                            .fecharegistro(aerolineaSave.getFecharegistro())
                             .build())
                     .build()
                     , HttpStatus.CREATED);
@@ -92,17 +92,17 @@ public class AerolineaController {
         Aerolinea aerolineaUpdate = null;
         try {
             if (aerolineaService.existsById(id)) {
-                aerolineaDto.setIdAerolinea(id);
+                aerolineaDto.setIdaereolinea(id);
                 aerolineaUpdate = aerolineaService.update(aerolineaDto);
                 return new ResponseEntity<>(MensajeResponse.builder()
                         .mensaje("Actualizado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .response(AerolineaDto.builder()
-                                .idAerolinea(aerolineaUpdate.getIdAerolinea())
+                                .idaereolinea(aerolineaUpdate.getIdaereolinea())
                                 .nombre(aerolineaUpdate.getNombre())
-                                .codigoIATA(aerolineaUpdate.getCodigoIATA())
-                                .codigoICAO(aerolineaUpdate.getCodigoICAO())
-                                .fechaRegistro(aerolineaUpdate.getFechaRegistro())
+                                .codigoiata(aerolineaUpdate.getCodigoiata())
+                                .codigoicao(aerolineaUpdate.getCodigoicao())
+                                .fecharegistro(aerolineaUpdate.getFecharegistro())
                                 .build())
                         .build()
                         , HttpStatus.CREATED);
@@ -122,7 +122,7 @@ public class AerolineaController {
                 aerolineaService.delete(aerolineaDelete);
                 return new ResponseEntity<>(ApiResponse.builder()
                         .mensaje("Eliminado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .build()
                         , HttpStatus.OK);
             }

@@ -2,10 +2,8 @@ package com.flyease.flyeaseapirest.service.impl;
 
 
 import com.flyease.flyeaseapirest.model.dao.VueloDao;
-import com.flyease.flyeaseapirest.model.dto.CiudadDto;
 import com.flyease.flyeaseapirest.model.dto.VueloDto;
 import com.flyease.flyeaseapirest.model.entity.Aeropuerto;
-import com.flyease.flyeaseapirest.model.entity.Ciudad;
 import com.flyease.flyeaseapirest.model.entity.Vuelo;
 import com.flyease.flyeaseapirest.service.IVueloService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,36 +30,35 @@ public class VueloImplService implements IVueloService {
     @Transactional
     @Override
     public Vuelo save(VueloDto vueloDto) {
-        double distancia = calcularDistancia(vueloDto.getAeropuertoDespegue(), vueloDto.getAeropuertoDestino());
+        double distancia = calcularDistancia(vueloDto.getAeropuerto_Despegue(), vueloDto.getAeropuerto_Destino());
 
         jdbcTemplate.update("CALL p_insertar_vuelo(?, ?, ?, ?, ?, ?, ?, ?)",
                 distancia,
-                vueloDto.getPrecioVuelo(),
-                vueloDto.getTarifaTemporada(),
+                vueloDto.getPreciovuelo(),
+                vueloDto.getTarifatemporada(),
                 vueloDto.getDescuento(),
                 vueloDto.getFechayhoradesalida(),
-                vueloDto.getAeropuertoDespegue().getIdAeropuerto(),
-                vueloDto.getAeropuertoDestino().getIdAeropuerto(),
+                vueloDto.getAeropuerto_Despegue().getIdaereopuerto(),
+                vueloDto.getAeropuerto_Destino().getIdaereopuerto(),
                 vueloDto.getAvion().getIdavion());
 
         Vuelo vuelo = Vuelo.builder()
-                .idVuelo(vueloDto.getIdVuelo())
-                .precioVuelo(vueloDto.getPrecioVuelo())
-                .tarifaTemporada(vueloDto.getTarifaTemporada())
+                .idvuelo(vueloDto.getIdvuelo())
+                .preciovuelo(vueloDto.getPreciovuelo())
+                .tarifatemporada(vueloDto.getTarifatemporada())
                 .descuento(vueloDto.getDescuento())
-                .distanciaRecorrida(vueloDto.getDistanciaRecorrida())
+                .distanciarecorrida(vueloDto.getDistanciarecorrida())
                 .fechayhoradesalida(vueloDto.getFechayhoradesalida())
                 .fechayhorallegada(vueloDto.getFechayhorallegada())
                 .cupo(vueloDto.getCupo())
-                .aeropuertoDespegue(vueloDto.getAeropuertoDespegue())
-                .aeropuertoDestino(vueloDto.getAeropuertoDestino())
+                .aeropuerto_Despegue(vueloDto.getAeropuerto_Despegue())
+                .aeropuerto_Destino(vueloDto.getAeropuerto_Destino())
                 .estado(vueloDto.getEstado())
                 .avion(vueloDto.getAvion())
-                .fechaRegistro(vueloDto.getFechaRegistro())
+                .fecharegistro(vueloDto.getFecharegistro())
                 .build();
         return vuelo;
     }
-
 
     private Double calcularDistancia(Aeropuerto despegue, Aeropuerto destino){
         int R = 6371;
@@ -86,39 +83,38 @@ public class VueloImplService implements IVueloService {
 
     @Transactional
     public Vuelo update(VueloDto vueloDto) {
-        double distancia = calcularDistancia(vueloDto.getAeropuertoDespegue(), vueloDto.getAeropuertoDestino());
+        double distancia = calcularDistancia(vueloDto.getAeropuerto_Despegue(), vueloDto.getAeropuerto_Destino());
 
         jdbcTemplate.update("CALL p_actualizar_vuelo(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                vueloDto.getIdVuelo(),
-                vueloDto.getPrecioVuelo(),
-                vueloDto.getTarifaTemporada(),
+                vueloDto.getIdvuelo(),
+                vueloDto.getPreciovuelo(),
+                vueloDto.getTarifatemporada(),
                 vueloDto.getDescuento(),
                 distancia,
                 vueloDto.getFechayhorallegada(),
                 vueloDto.getCupo(),
-                vueloDto.getAeropuertoDespegue().getIdAeropuerto(),
-                vueloDto.getAeropuertoDestino().getIdAeropuerto(),
-                vueloDto.getEstado().getIdEstado(),
+                vueloDto.getAeropuerto_Despegue().getIdaereopuerto(),
+                vueloDto.getAeropuerto_Destino().getIdaereopuerto(),
+                vueloDto.getEstado().getIdestado(),
                 vueloDto.getAvion().getIdavion());
 
         Vuelo vuelo = Vuelo.builder()
-                .idVuelo(vueloDto.getIdVuelo())
-                .precioVuelo(vueloDto.getPrecioVuelo())
-                .tarifaTemporada(vueloDto.getTarifaTemporada())
+                .idvuelo(vueloDto.getIdvuelo())
+                .preciovuelo(vueloDto.getPreciovuelo())
+                .tarifatemporada(vueloDto.getTarifatemporada())
                 .descuento(vueloDto.getDescuento())
-                .distanciaRecorrida(vueloDto.getDistanciaRecorrida())
+                .distanciarecorrida(vueloDto.getDistanciarecorrida())
                 .fechayhoradesalida(vueloDto.getFechayhoradesalida())
                 .fechayhorallegada(vueloDto.getFechayhorallegada())
                 .cupo(vueloDto.getCupo())
-                .aeropuertoDespegue(vueloDto.getAeropuertoDespegue())
-                .aeropuertoDestino(vueloDto.getAeropuertoDestino())
+                .aeropuerto_Despegue(vueloDto.getAeropuerto_Despegue())
+                .aeropuerto_Destino(vueloDto.getAeropuerto_Destino())
                 .estado(vueloDto.getEstado())
                 .avion(vueloDto.getAvion())
-                .fechaRegistro(vueloDto.getFechaRegistro())
+                .fecharegistro(vueloDto.getFecharegistro())
                 .build();
         return vuelo;
     }
-
 
     @Transactional(readOnly = true)
     @Override
@@ -129,7 +125,7 @@ public class VueloImplService implements IVueloService {
     @Transactional
     @Override
     public void delete(Vuelo vuelo) {
-        jdbcTemplate.update("CALL p_eliminar_vuelo(?)", vuelo.getIdVuelo());
+        jdbcTemplate.update("CALL p_eliminar_vuelo(?)", vuelo.getIdvuelo());
     }
 
     @Override

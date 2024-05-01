@@ -1,12 +1,10 @@
 package com.flyease.flyeaseapirest.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -14,10 +12,14 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
-@Table(name = "clientes")
-public class Cliente implements Serializable {
+@Table(name = "administradores")
+public class Administrador implements Serializable {
 
     @Id
+    @Column(name = "idadministrador")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idadministrador;
+
     @Column(name = "numerodocumento")
     private String numerodocumento;
 
@@ -36,11 +38,16 @@ public class Cliente implements Serializable {
     @Column(name = "correo")
     private String correo;
 
+    @Column(name = "estado")
+    private Boolean estado;
+
+    @Column(name = "usuario")
+    private String usuario;
+
+    @Column(name = "clave")
+    private String clave;
+
     @Column(name = "fecharegistro")
     private LocalDateTime fecharegistro;
-
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Boleto> boletos;
 
 }

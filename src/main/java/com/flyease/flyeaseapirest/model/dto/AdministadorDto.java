@@ -1,7 +1,5 @@
 package com.flyease.flyeaseapirest.model.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -15,7 +13,9 @@ import java.time.LocalDateTime;
 @Data
 @ToString
 @Builder
-public class ClienteDto implements Serializable {
+public class AdministadorDto implements Serializable {
+
+    private Integer idadministrador;
 
     @Size(min = 1, max = 10)
     @NotEmpty(message = "Número de documento requerido!")
@@ -41,6 +41,16 @@ public class ClienteDto implements Serializable {
     @NotEmpty(message = "Correo requerido!")
     @Email
     private String correo;
+
+    private Boolean estado;
+
+    @Size(min = 1, max = 50)
+    @NotEmpty(message = "Usuario requeridos!")
+    private String usuario;
+
+    @Size(min = 1, max = 100)
+    @NotEmpty(message = "Clave requerida!")
+    private String clave;
 
     private LocalDateTime fecharegistro;
 

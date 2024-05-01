@@ -36,7 +36,7 @@ public class ClienteController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(getList)
                         .build()
                 , HttpStatus.OK);
@@ -53,7 +53,7 @@ public class ClienteController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(ClienteDto.builder()
                                 .numerodocumento(cliente.getNumerodocumento())
                                 .tipodocumento(cliente.getTipodocumento())
@@ -61,7 +61,7 @@ public class ClienteController {
                                 .apellidos(cliente.getApellidos())
                                 .celular(cliente.getCelular())
                                 .correo(cliente.getCorreo())
-                                .fechaRegistro(cliente.getFechaRegistro())
+                                .fecharegistro(cliente.getFecharegistro())
                                 .build())
                         .build()
                 , HttpStatus.OK);
@@ -74,7 +74,7 @@ public class ClienteController {
             clienteSave = clienteService.save(clienteDto);
             return new ResponseEntity<>(MensajeResponse.builder()
                     .mensaje("Guardado correctamente")
-                    .sucess(true)
+                    .success(true)
                     .response(ClienteDto.builder()
                             .numerodocumento(clienteSave.getNumerodocumento())
                             .tipodocumento(clienteSave.getTipodocumento())
@@ -82,7 +82,7 @@ public class ClienteController {
                             .apellidos(clienteSave.getApellidos())
                             .celular(clienteSave.getCelular())
                             .correo(clienteSave.getCorreo())
-                            .fechaRegistro(clienteSave.getFechaRegistro())
+                            .fecharegistro(clienteSave.getFecharegistro())
                             .build())
                     .build()
                     , HttpStatus.CREATED);
@@ -100,7 +100,7 @@ public class ClienteController {
                 clienteUpdate = clienteService.update(clienteDto, id);
                 return new ResponseEntity<>(MensajeResponse.builder()
                         .mensaje("Actualizado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .response(ClienteDto.builder()
                                 .numerodocumento(clienteUpdate.getNumerodocumento())
                                 .tipodocumento(clienteUpdate.getTipodocumento())
@@ -108,7 +108,7 @@ public class ClienteController {
                                 .apellidos(clienteUpdate.getApellidos())
                                 .celular(clienteUpdate.getCelular())
                                 .correo(clienteUpdate.getCorreo())
-                                .fechaRegistro(clienteUpdate.getFechaRegistro())
+                                .fecharegistro(clienteUpdate.getFecharegistro())
                                 .build())
                         .build()
                         , HttpStatus.CREATED);
@@ -128,7 +128,7 @@ public class ClienteController {
                 clienteService.delete(clienteDelete);
                 return new ResponseEntity<>(ApiResponse.builder()
                         .mensaje("Eliminado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .build()
                         , HttpStatus.OK);
             }

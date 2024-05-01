@@ -2,13 +2,10 @@ package com.flyease.flyeaseapirest.controller;
 
 import com.flyease.flyeaseapirest.exception.BadRequestException;
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
-import com.flyease.flyeaseapirest.model.dto.RegionDto;
 import com.flyease.flyeaseapirest.model.dto.VueloDto;
-import com.flyease.flyeaseapirest.model.entity.Region;
 import com.flyease.flyeaseapirest.model.entity.Vuelo;
 import com.flyease.flyeaseapirest.model.payload.ApiResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
-import com.flyease.flyeaseapirest.service.IRegionService;
 import com.flyease.flyeaseapirest.service.IVueloService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +33,7 @@ public class VueloController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(getList)
                         .build()
                 , HttpStatus.OK);
@@ -53,21 +50,21 @@ public class VueloController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(VueloDto.builder()
-                                .idVuelo(vuelo.getIdVuelo())
-                                .precioVuelo(vuelo.getPrecioVuelo())
-                                .tarifaTemporada(vuelo.getTarifaTemporada())
+                                .idvuelo(vuelo.getIdvuelo())
+                                .preciovuelo(vuelo.getPreciovuelo())
+                                .tarifatemporada(vuelo.getTarifatemporada())
                                 .descuento(vuelo.getDescuento())
-                                .distanciaRecorrida(vuelo.getDistanciaRecorrida())
+                                .distanciarecorrida(vuelo.getDistanciarecorrida())
                                 .fechayhoradesalida(vuelo.getFechayhoradesalida())
                                 .fechayhorallegada(vuelo.getFechayhorallegada())
                                 .cupo(vuelo.getCupo())
-                                .aeropuertoDespegue(vuelo.getAeropuertoDespegue())
-                                .aeropuertoDestino(vuelo.getAeropuertoDestino())
+                                .aeropuerto_Despegue(vuelo.getAeropuerto_Despegue())
+                                .aeropuerto_Destino(vuelo.getAeropuerto_Destino())
                                 .estado(vuelo.getEstado())
                                 .avion(vuelo.getAvion())
-                                .fechaRegistro(vuelo.getFechaRegistro())
+                                .fecharegistro(vuelo.getFecharegistro())
                                 .build())
                         .build()
                 , HttpStatus.OK);
@@ -80,21 +77,21 @@ public class VueloController {
             vueloSave = vueloService.save(vueloDto);
             return new ResponseEntity<>(MensajeResponse.builder()
                     .mensaje("Guardado correctamente")
-                    .sucess(true)
+                    .success(true)
                     .response(VueloDto.builder()
-                            .idVuelo(vueloSave.getIdVuelo())
-                            .precioVuelo(vueloSave.getPrecioVuelo())
-                            .tarifaTemporada(vueloSave.getTarifaTemporada())
+                            .idvuelo(vueloSave.getIdvuelo())
+                            .preciovuelo(vueloSave.getPreciovuelo())
+                            .tarifatemporada(vueloSave.getTarifatemporada())
                             .descuento(vueloSave.getDescuento())
-                            .distanciaRecorrida(vueloSave.getDistanciaRecorrida())
+                            .distanciarecorrida(vueloSave.getDistanciarecorrida())
                             .fechayhoradesalida(vueloSave.getFechayhoradesalida())
                             .fechayhorallegada(vueloSave.getFechayhorallegada())
                             .cupo(vueloSave.getCupo())
-                            .aeropuertoDespegue(vueloSave.getAeropuertoDespegue())
-                            .aeropuertoDestino(vueloSave.getAeropuertoDestino())
+                            .aeropuerto_Despegue(vueloSave.getAeropuerto_Despegue())
+                            .aeropuerto_Destino(vueloSave.getAeropuerto_Destino())
                             .estado(vueloSave.getEstado())
                             .avion(vueloSave.getAvion())
-                            .fechaRegistro(vueloSave.getFechaRegistro())
+                            .fecharegistro(vueloSave.getFecharegistro())
                             .build())
                     .build()
                     , HttpStatus.CREATED);
@@ -108,25 +105,25 @@ public class VueloController {
         Vuelo vueloUpdate = null;
         try {
             if (vueloService.existsById(id)) {
-                vueloDto.setIdVuelo(id);
+                vueloDto.setIdvuelo(id);
                 vueloUpdate = vueloService.update(vueloDto);
                 return new ResponseEntity<>(MensajeResponse.builder()
                         .mensaje("Actualizado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .response(VueloDto.builder()
-                                .idVuelo(vueloUpdate.getIdVuelo())
-                                .precioVuelo(vueloUpdate.getPrecioVuelo())
-                                .tarifaTemporada(vueloUpdate.getTarifaTemporada())
+                                .idvuelo(vueloUpdate.getIdvuelo())
+                                .preciovuelo(vueloUpdate.getPreciovuelo())
+                                .tarifatemporada(vueloUpdate.getTarifatemporada())
                                 .descuento(vueloUpdate.getDescuento())
-                                .distanciaRecorrida(vueloUpdate.getDistanciaRecorrida())
+                                .distanciarecorrida(vueloUpdate.getDistanciarecorrida())
                                 .fechayhoradesalida(vueloUpdate.getFechayhoradesalida())
                                 .fechayhorallegada(vueloUpdate.getFechayhorallegada())
                                 .cupo(vueloUpdate.getCupo())
-                                .aeropuertoDespegue(vueloUpdate.getAeropuertoDespegue())
-                                .aeropuertoDestino(vueloUpdate.getAeropuertoDestino())
+                                .aeropuerto_Despegue(vueloUpdate.getAeropuerto_Despegue())
+                                .aeropuerto_Destino(vueloUpdate.getAeropuerto_Destino())
                                 .estado(vueloUpdate.getEstado())
                                 .avion(vueloUpdate.getAvion())
-                                .fechaRegistro(vueloUpdate.getFechaRegistro())
+                                .fecharegistro(vueloUpdate.getFecharegistro())
                                 .build())
                         .build()
                         , HttpStatus.CREATED);
@@ -146,7 +143,7 @@ public class VueloController {
                 vueloService.delete(vueloDelete);
                 return new ResponseEntity<>(ApiResponse.builder()
                         .mensaje("Eliminado correctamente")
-                        .sucess(true)
+                        .success(true)
                         .build()
                         , HttpStatus.OK);
             }
@@ -157,6 +154,5 @@ public class VueloController {
             throw  new BadRequestException(exDt.getMessage());
         }
     }
-
 
 }

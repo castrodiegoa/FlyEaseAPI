@@ -36,7 +36,7 @@ public class EstadoController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(getList)
                         .build()
                 , HttpStatus.OK);
@@ -53,12 +53,12 @@ public class EstadoController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("ok")
-                        .sucess(true)
+                        .success(true)
                         .response(EstadoDto.builder()
-                                .idEstado(estado.getIdEstado())
+                                .idestado(estado.getIdestado())
                                 .nombre(estado.getNombre())
                                 .descripcion(estado.getDescripcion())
-                                .fechaRegistro(estado.getFechaRegistro())
+                                .fecharegistro(estado.getFecharegistro())
                                 .detencion(estado.getDetencion())
                                 .build())
                         .build()
