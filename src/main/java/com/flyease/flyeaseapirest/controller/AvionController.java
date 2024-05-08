@@ -3,13 +3,10 @@ package com.flyease.flyeaseapirest.controller;
 import com.flyease.flyeaseapirest.exception.BadRequestException;
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
 import com.flyease.flyeaseapirest.model.dto.AvionDto;
-import com.flyease.flyeaseapirest.model.dto.RegionDto;
 import com.flyease.flyeaseapirest.model.entity.Avion;
-import com.flyease.flyeaseapirest.model.entity.Region;
-import com.flyease.flyeaseapirest.model.payload.ApiResponse;
+import com.flyease.flyeaseapirest.model.payload.InformeResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
 import com.flyease.flyeaseapirest.service.IAvionService;
-import com.flyease.flyeaseapirest.service.IRegionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -28,7 +25,7 @@ public class AvionController {
 
     @GetMapping("aviones")
     public ResponseEntity<?> showAll() {
-        List<Avion> getList = avionService.listAlll();
+        List<Avion> getList = avionService.listAll();
         if (getList == null || getList.isEmpty()) {
             throw new ResourceNotFoundException("aviones");
         }
@@ -131,7 +128,7 @@ public class AvionController {
             Avion avionDelete = avionService.findById(id);
             if (avionDelete != null) {
                 avionService.delete(avionDelete);
-                return new ResponseEntity<>(ApiResponse.builder()
+                return new ResponseEntity<>(InformeResponse.builder()
                         .mensaje("Eliminado correctamente")
                         .success(true)
                         .build()

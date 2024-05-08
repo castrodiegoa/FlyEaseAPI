@@ -3,7 +3,7 @@ package com.flyease.flyeaseapirest.service.impl;
 import com.flyease.flyeaseapirest.model.dao.PaisDao;
 import com.flyease.flyeaseapirest.model.dto.PaisDto;
 import com.flyease.flyeaseapirest.model.entity.Pais;
-import com.flyease.flyeaseapirest.service.IPaisService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class PaisImplService implements IPaisService {
+public class PaisImplService implements ICrudService<Pais, PaisDto, Integer> {
 
     @Autowired
     private PaisDao paisDao;
@@ -21,7 +21,7 @@ public class PaisImplService implements IPaisService {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Pais> listAlll() {
+    public List<Pais> listAll() {
         return (List) paisDao.findAll();
     }
 

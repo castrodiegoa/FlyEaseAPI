@@ -3,7 +3,7 @@ package com.flyease.flyeaseapirest.service.impl;
 import com.flyease.flyeaseapirest.model.dao.BoletoDao;
 import com.flyease.flyeaseapirest.model.dto.BoletoDto;
 import com.flyease.flyeaseapirest.model.entity.Boleto;
-import com.flyease.flyeaseapirest.service.IBoletoService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class BoletoImplService implements IBoletoService {
+public class BoletoImplService implements ICrudService<Boleto, BoletoDto, Integer> {
 
     @Autowired
     private BoletoDao boletoDao;
@@ -21,7 +21,7 @@ public class BoletoImplService implements IBoletoService {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Boleto> listAlll() {
+    public List<Boleto> listAll() {
         return (List) boletoDao.findAll();
     }
 

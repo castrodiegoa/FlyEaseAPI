@@ -1,12 +1,8 @@
 package com.flyease.flyeaseapirest.service.impl;
 
-import com.flyease.flyeaseapirest.model.dao.CategoriaDao;
 import com.flyease.flyeaseapirest.model.dao.ClienteDao;
-import com.flyease.flyeaseapirest.model.dto.CategoriaDto;
 import com.flyease.flyeaseapirest.model.dto.ClienteDto;
-import com.flyease.flyeaseapirest.model.entity.Categoria;
 import com.flyease.flyeaseapirest.model.entity.Cliente;
-import com.flyease.flyeaseapirest.service.ICategoriaService;
 import com.flyease.flyeaseapirest.service.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

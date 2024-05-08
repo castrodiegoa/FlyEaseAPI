@@ -4,9 +4,9 @@ import com.flyease.flyeaseapirest.exception.BadRequestException;
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
 import com.flyease.flyeaseapirest.model.dto.PaisDto;
 import com.flyease.flyeaseapirest.model.entity.Pais;
-import com.flyease.flyeaseapirest.model.payload.ApiResponse;
+import com.flyease.flyeaseapirest.model.payload.InformeResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
-import com.flyease.flyeaseapirest.service.IPaisService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -21,11 +21,11 @@ import java.util.List;
 public class PaisController {
 
     @Autowired
-    private IPaisService paisService;
+    private ICrudService<Pais, PaisDto, Integer> paisService;
 
     @GetMapping("paises")
     public ResponseEntity<?> showAll() {
-        List<Pais> getList = paisService.listAlll();
+        List<Pais> getList = paisService.listAll();
         if (getList == null || getList.isEmpty()) {
             throw new ResourceNotFoundException("paises");
         }
@@ -111,7 +111,7 @@ public class PaisController {
             Pais paisDelete = paisService.findById(id);
             if (paisDelete != null) {
                 paisService.delete(paisDelete);
-                return new ResponseEntity<>(ApiResponse.builder()
+                return new ResponseEntity<>(InformeResponse.builder()
                         .mensaje("Eliminado correctamente")
                         .success(true)
                         .build()

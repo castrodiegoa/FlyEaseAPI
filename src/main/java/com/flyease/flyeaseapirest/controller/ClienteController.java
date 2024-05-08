@@ -2,13 +2,10 @@ package com.flyease.flyeaseapirest.controller;
 
 import com.flyease.flyeaseapirest.exception.BadRequestException;
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
-import com.flyease.flyeaseapirest.model.dto.CategoriaDto;
 import com.flyease.flyeaseapirest.model.dto.ClienteDto;
-import com.flyease.flyeaseapirest.model.entity.Categoria;
 import com.flyease.flyeaseapirest.model.entity.Cliente;
-import com.flyease.flyeaseapirest.model.payload.ApiResponse;
+import com.flyease.flyeaseapirest.model.payload.InformeResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
-import com.flyease.flyeaseapirest.service.ICategoriaService;
 import com.flyease.flyeaseapirest.service.IClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,7 +123,7 @@ public class ClienteController {
             Cliente clienteDelete = clienteService.findById(id);
             if (clienteDelete != null) {
                 clienteService.delete(clienteDelete);
-                return new ResponseEntity<>(ApiResponse.builder()
+                return new ResponseEntity<>(InformeResponse.builder()
                         .mensaje("Eliminado correctamente")
                         .success(true)
                         .build()

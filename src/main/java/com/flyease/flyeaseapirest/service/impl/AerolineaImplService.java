@@ -1,12 +1,9 @@
 package com.flyease.flyeaseapirest.service.impl;
 
 import com.flyease.flyeaseapirest.model.dao.AerolineaDao;
-import com.flyease.flyeaseapirest.model.dao.AeropuertoDao;
 import com.flyease.flyeaseapirest.model.dto.AerolineaDto;
-import com.flyease.flyeaseapirest.model.dto.AeropuertoDto;
 import com.flyease.flyeaseapirest.model.entity.Aerolinea;
-import com.flyease.flyeaseapirest.model.entity.Aeropuerto;
-import com.flyease.flyeaseapirest.service.IAerolineaService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -15,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class AerolineaImplService implements IAerolineaService {
+public class AerolineaImplService implements ICrudService<Aerolinea, AerolineaDto, Integer> {
 
     @Autowired
     private AerolineaDao aerolineaDao;
@@ -24,7 +21,7 @@ public class AerolineaImplService implements IAerolineaService {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Aerolinea> listAlll() {
+    public List<Aerolinea> listAll() {
         return (List) aerolineaDao.findAll();
     }
 
@@ -80,6 +77,5 @@ public class AerolineaImplService implements IAerolineaService {
     public boolean existsById(Integer id) {
         return aerolineaDao.existsById(id);
     }
-
 
 }

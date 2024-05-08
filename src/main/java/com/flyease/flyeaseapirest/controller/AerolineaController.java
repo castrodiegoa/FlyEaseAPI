@@ -3,13 +3,10 @@ package com.flyease.flyeaseapirest.controller;
 import com.flyease.flyeaseapirest.exception.BadRequestException;
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
 import com.flyease.flyeaseapirest.model.dto.AerolineaDto;
-import com.flyease.flyeaseapirest.model.dto.PaisDto;
 import com.flyease.flyeaseapirest.model.entity.Aerolinea;
-import com.flyease.flyeaseapirest.model.entity.Pais;
-import com.flyease.flyeaseapirest.model.payload.ApiResponse;
+import com.flyease.flyeaseapirest.model.payload.InformeResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
-import com.flyease.flyeaseapirest.service.IAerolineaService;
-import com.flyease.flyeaseapirest.service.IPaisService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -24,11 +21,11 @@ import java.util.List;
 public class AerolineaController {
 
     @Autowired
-    private IAerolineaService aerolineaService;
+    private ICrudService<Aerolinea, AerolineaDto, Integer> aerolineaService;
 
     @GetMapping("aerolineas")
     public ResponseEntity<?> showAll() {
-        List<Aerolinea> getList = aerolineaService.listAlll();
+        List<Aerolinea> getList = aerolineaService.listAll();
         if (getList == null || getList.isEmpty()) {
             throw new ResourceNotFoundException("aerolíneas");
         }
@@ -120,7 +117,7 @@ public class AerolineaController {
             Aerolinea aerolineaDelete = aerolineaService.findById(id);
             if (aerolineaDelete != null) {
                 aerolineaService.delete(aerolineaDelete);
-                return new ResponseEntity<>(ApiResponse.builder()
+                return new ResponseEntity<>(InformeResponse.builder()
                         .mensaje("Eliminado correctamente")
                         .success(true)
                         .build()

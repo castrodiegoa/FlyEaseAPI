@@ -2,14 +2,11 @@ package com.flyease.flyeaseapirest.controller;
 
 import com.flyease.flyeaseapirest.exception.BadRequestException;
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
-import com.flyease.flyeaseapirest.model.dto.AeropuertoDto;
 import com.flyease.flyeaseapirest.model.dto.CategoriaDto;
-import com.flyease.flyeaseapirest.model.entity.Aeropuerto;
 import com.flyease.flyeaseapirest.model.entity.Categoria;
-import com.flyease.flyeaseapirest.model.payload.ApiResponse;
+import com.flyease.flyeaseapirest.model.payload.InformeResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
-import com.flyease.flyeaseapirest.service.IAeropuertoService;
-import com.flyease.flyeaseapirest.service.ICategoriaService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -24,11 +21,11 @@ import java.util.List;
 public class CategoriaController {
 
     @Autowired
-    private ICategoriaService categoriaService;
+    private ICrudService<Categoria, CategoriaDto, Integer> categoriaService;
 
     @GetMapping("categorias")
     public ResponseEntity<?> showAll() {
-        List<Categoria> getList = categoriaService.listAlll();
+        List<Categoria> getList = categoriaService.listAll();
         if (getList == null || getList.isEmpty()) {
             throw new ResourceNotFoundException("categorías");
         }
@@ -126,7 +123,7 @@ public class CategoriaController {
             Categoria categoriaDelete = categoriaService.findById(id);
             if (categoriaDelete != null) {
                 categoriaService.delete(categoriaDelete);
-                return new ResponseEntity<>(ApiResponse.builder()
+                return new ResponseEntity<>(InformeResponse.builder()
                         .mensaje("Eliminado correctamente")
                         .success(true)
                         .build()

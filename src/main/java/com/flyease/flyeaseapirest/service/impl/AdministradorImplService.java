@@ -1,10 +1,8 @@
 package com.flyease.flyeaseapirest.service.impl;
 
 import com.flyease.flyeaseapirest.model.dao.AdministradorDao;
-import com.flyease.flyeaseapirest.model.dao.EstadoDao;
 import com.flyease.flyeaseapirest.model.entity.Administrador;
-import com.flyease.flyeaseapirest.model.entity.Estado;
-import com.flyease.flyeaseapirest.service.IAdministradorService;
+import com.flyease.flyeaseapirest.service.IReadOnlyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class AdministradorImplService implements IAdministradorService {
+public class AdministradorImplService implements IReadOnlyService<Administrador, Integer> {
 
     @Autowired
     private AdministradorDao administradorDao;
 
     @Override
-    public List<Administrador> listAlll() {
+    public List<Administrador> listAll() {
         return (List) administradorDao.findAll();
     }
 

@@ -1,26 +1,22 @@
 package com.flyease.flyeaseapirest.service.impl;
 
-import com.flyease.flyeaseapirest.model.dao.ClienteDao;
 import com.flyease.flyeaseapirest.model.dao.EstadoDao;
-import com.flyease.flyeaseapirest.model.dto.ClienteDto;
-import com.flyease.flyeaseapirest.model.entity.Cliente;
 import com.flyease.flyeaseapirest.model.entity.Estado;
-import com.flyease.flyeaseapirest.service.IEstadoService;
+import com.flyease.flyeaseapirest.service.IReadOnlyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-public class EstadoImplService implements IEstadoService {
+public class EstadoImplService implements IReadOnlyService<Estado, Integer> {
 
     @Autowired
     private EstadoDao estadoDao;
 
     @Override
-    public List<Estado> listAlll() {
+    public List<Estado> listAll() {
         return (List) estadoDao.findAll();
     }
 

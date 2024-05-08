@@ -3,7 +3,7 @@ package com.flyease.flyeaseapirest.service.impl;
 import com.flyease.flyeaseapirest.model.dao.RegionDao;
 import com.flyease.flyeaseapirest.model.dto.RegionDto;
 import com.flyease.flyeaseapirest.model.entity.Region;
-import com.flyease.flyeaseapirest.service.IRegionService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class RegionImplService implements IRegionService {
+public class RegionImplService implements ICrudService<Region, RegionDto, Integer> {
 
     @Autowired
     private RegionDao regionDao;
@@ -21,7 +21,7 @@ public class RegionImplService implements IRegionService {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Region> listAlll() {
+    public List<Region> listAll() {
         return (List) regionDao.findAll();
     }
 

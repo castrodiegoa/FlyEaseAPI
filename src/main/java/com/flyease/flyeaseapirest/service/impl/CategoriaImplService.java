@@ -1,13 +1,9 @@
 package com.flyease.flyeaseapirest.service.impl;
 
-import com.flyease.flyeaseapirest.model.dao.AerolineaDao;
 import com.flyease.flyeaseapirest.model.dao.CategoriaDao;
-import com.flyease.flyeaseapirest.model.dto.AerolineaDto;
 import com.flyease.flyeaseapirest.model.dto.CategoriaDto;
-import com.flyease.flyeaseapirest.model.entity.Aerolinea;
 import com.flyease.flyeaseapirest.model.entity.Categoria;
-import com.flyease.flyeaseapirest.service.IAeropuertoService;
-import com.flyease.flyeaseapirest.service.ICategoriaService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -16,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class CategoriaImplService implements ICategoriaService {
+public class CategoriaImplService implements ICrudService<Categoria, CategoriaDto, Integer> {
 
     @Autowired
     private CategoriaDao categoriaDao;
@@ -25,7 +21,7 @@ public class CategoriaImplService implements ICategoriaService {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Categoria> listAlll() {
+    public List<Categoria> listAll() {
         return (List) categoriaDao.findAll();
     }
 

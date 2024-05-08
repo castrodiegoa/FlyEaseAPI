@@ -1,12 +1,9 @@
 package com.flyease.flyeaseapirest.service.impl;
 
 import com.flyease.flyeaseapirest.model.dao.AeropuertoDao;
-import com.flyease.flyeaseapirest.model.dao.CiudadDao;
 import com.flyease.flyeaseapirest.model.dto.AeropuertoDto;
-import com.flyease.flyeaseapirest.model.dto.CiudadDto;
 import com.flyease.flyeaseapirest.model.entity.Aeropuerto;
-import com.flyease.flyeaseapirest.model.entity.Ciudad;
-import com.flyease.flyeaseapirest.service.IAeropuertoService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -15,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class AeropuertoImplService implements IAeropuertoService {
+public class AeropuertoImplService implements ICrudService<Aeropuerto, AeropuertoDto, Integer> {
 
     @Autowired
     private AeropuertoDao aeropuertoDao;
@@ -24,7 +21,7 @@ public class AeropuertoImplService implements IAeropuertoService {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Aeropuerto> listAlll() {
+    public List<Aeropuerto> listAll() {
         return (List) aeropuertoDao.findAll();
     }
 

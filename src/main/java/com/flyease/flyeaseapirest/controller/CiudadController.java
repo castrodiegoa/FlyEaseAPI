@@ -3,13 +3,10 @@ package com.flyease.flyeaseapirest.controller;
 import com.flyease.flyeaseapirest.exception.BadRequestException;
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
 import com.flyease.flyeaseapirest.model.dto.CiudadDto;
-import com.flyease.flyeaseapirest.model.dto.RegionDto;
 import com.flyease.flyeaseapirest.model.entity.Ciudad;
-import com.flyease.flyeaseapirest.model.entity.Region;
-import com.flyease.flyeaseapirest.model.payload.ApiResponse;
+import com.flyease.flyeaseapirest.model.payload.InformeResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
-import com.flyease.flyeaseapirest.service.ICiudadService;
-import com.flyease.flyeaseapirest.service.IRegionService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -24,11 +21,11 @@ import java.util.List;
 public class CiudadController {
 
     @Autowired
-    private ICiudadService ciudadService;
+    private ICrudService<Ciudad, CiudadDto, Integer> ciudadService;
 
     @GetMapping("ciudades")
     public ResponseEntity<?> showAll() {
-        List<Ciudad> getList = ciudadService.listAlll();
+        List<Ciudad> getList = ciudadService.listAll();
         if (getList == null || getList.isEmpty()) {
             throw new ResourceNotFoundException("ciudades");
         }
@@ -120,7 +117,7 @@ public class CiudadController {
             Ciudad ciudadDelete = ciudadService.findById(id);
             if (ciudadDelete != null) {
                 ciudadService.delete(ciudadDelete);
-                return new ResponseEntity<>(ApiResponse.builder()
+                return new ResponseEntity<>(InformeResponse.builder()
                         .mensaje("Eliminado correctamente")
                         .success(true)
                         .build()

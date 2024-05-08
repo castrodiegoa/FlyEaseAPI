@@ -3,13 +3,10 @@ package com.flyease.flyeaseapirest.controller;
 import com.flyease.flyeaseapirest.exception.BadRequestException;
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
 import com.flyease.flyeaseapirest.model.dto.AsientoDto;
-import com.flyease.flyeaseapirest.model.dto.RegionDto;
 import com.flyease.flyeaseapirest.model.entity.Asiento;
-import com.flyease.flyeaseapirest.model.entity.Region;
-import com.flyease.flyeaseapirest.model.payload.ApiResponse;
+import com.flyease.flyeaseapirest.model.payload.InformeResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
-import com.flyease.flyeaseapirest.service.IAsientoService;
-import com.flyease.flyeaseapirest.service.IRegionService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -24,11 +21,11 @@ import java.util.List;
 public class AsientoController {
 
     @Autowired
-    private IAsientoService asientoService;
+    private ICrudService<Asiento, AsientoDto, Integer> asientoService;
 
     @GetMapping("asientos")
     public ResponseEntity<?> showAll() {
-        List<Asiento> getList = asientoService.listAlll();
+        List<Asiento> getList = asientoService.listAll();
         if (getList == null || getList.isEmpty()) {
             throw new ResourceNotFoundException("asientos");
         }
@@ -123,7 +120,7 @@ public class AsientoController {
             Asiento asientoDelete = asientoService.findById(id);
             if (asientoDelete != null) {
                 asientoService.delete(asientoDelete);
-                return new ResponseEntity<>(ApiResponse.builder()
+                return new ResponseEntity<>(InformeResponse.builder()
                         .mensaje("Eliminado correctamente")
                         .success(true)
                         .build()

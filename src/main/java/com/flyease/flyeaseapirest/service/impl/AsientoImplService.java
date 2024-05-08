@@ -1,12 +1,9 @@
 package com.flyease.flyeaseapirest.service.impl;
 
 import com.flyease.flyeaseapirest.model.dao.AsientoDao;
-import com.flyease.flyeaseapirest.model.dao.RegionDao;
 import com.flyease.flyeaseapirest.model.dto.AsientoDto;
-import com.flyease.flyeaseapirest.model.dto.RegionDto;
 import com.flyease.flyeaseapirest.model.entity.Asiento;
-import com.flyease.flyeaseapirest.model.entity.Region;
-import com.flyease.flyeaseapirest.service.IAsientoService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -15,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class AsientoImplService implements IAsientoService {
+public class AsientoImplService implements ICrudService<Asiento, AsientoDto, Integer> {
 
     @Autowired
     private AsientoDao asientoDao;
@@ -24,7 +21,7 @@ public class AsientoImplService implements IAsientoService {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Asiento> listAlll() {
+    public List<Asiento> listAll() {
         return (List) asientoDao.findAll();
     }
 

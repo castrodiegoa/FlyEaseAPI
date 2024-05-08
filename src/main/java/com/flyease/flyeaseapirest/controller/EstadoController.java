@@ -1,18 +1,12 @@
 package com.flyease.flyeaseapirest.controller;
 
-import com.flyease.flyeaseapirest.exception.BadRequestException;
+
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
 import com.flyease.flyeaseapirest.model.dto.EstadoDto;
-import com.flyease.flyeaseapirest.model.dto.PaisDto;
 import com.flyease.flyeaseapirest.model.entity.Estado;
-import com.flyease.flyeaseapirest.model.entity.Pais;
-import com.flyease.flyeaseapirest.model.payload.ApiResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
-import com.flyease.flyeaseapirest.service.IEstadoService;
-import com.flyease.flyeaseapirest.service.IPaisService;
-import jakarta.validation.Valid;
+import com.flyease.flyeaseapirest.service.IReadOnlyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,11 +18,11 @@ import java.util.List;
 public class EstadoController {
 
     @Autowired
-    private IEstadoService estadoService;
+    private IReadOnlyService<Estado, Integer> estadoService;
 
     @GetMapping("estados")
     public ResponseEntity<?> showAll() {
-        List<Estado> getList = estadoService.listAlll();
+        List<Estado> getList = estadoService.listAll();
         if (getList == null || getList.isEmpty()) {
             throw new ResourceNotFoundException("estados");
         }

@@ -6,7 +6,7 @@ import com.flyease.flyeaseapirest.model.dto.CiudadDto;
 
 import com.flyease.flyeaseapirest.model.entity.Ciudad;
 
-import com.flyease.flyeaseapirest.service.ICiudadService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class CiudadImplService implements ICiudadService {
+public class CiudadImplService implements ICrudService<Ciudad, CiudadDto, Integer> {
 
     @Autowired
     private CiudadDao ciudadDao;
@@ -24,7 +24,7 @@ public class CiudadImplService implements ICiudadService {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Ciudad> listAlll() {
+    public List<Ciudad> listAll() {
         return (List) ciudadDao.findAll();
     }
 

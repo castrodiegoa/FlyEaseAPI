@@ -4,18 +4,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 
 @Data
 @NoArgsConstructor
 @Builder
-public class ApiResponse {
+public class InformeResponse {
 
     private String mensaje;
     private Boolean success;
 
-    public ApiResponse(String mensaje, Boolean success) {
+    public InformeResponse(String mensaje, Boolean success) {
         this.mensaje = mensaje;
         this.success = success;
     }

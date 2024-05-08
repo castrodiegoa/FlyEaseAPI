@@ -3,13 +3,10 @@ package com.flyease.flyeaseapirest.controller;
 import com.flyease.flyeaseapirest.exception.BadRequestException;
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
 import com.flyease.flyeaseapirest.model.dto.BoletoDto;
-import com.flyease.flyeaseapirest.model.dto.RegionDto;
 import com.flyease.flyeaseapirest.model.entity.Boleto;
-import com.flyease.flyeaseapirest.model.entity.Region;
-import com.flyease.flyeaseapirest.model.payload.ApiResponse;
+import com.flyease.flyeaseapirest.model.payload.InformeResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
-import com.flyease.flyeaseapirest.service.IBoletoService;
-import com.flyease.flyeaseapirest.service.IRegionService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -24,11 +21,11 @@ import java.util.List;
 public class BoletoController {
 
     @Autowired
-    private IBoletoService boletoService;
+    private ICrudService<Boleto, BoletoDto, Integer> boletoService;
 
     @GetMapping("boletos")
     public ResponseEntity<?> showAll() {
-        List<Boleto> getList = boletoService.listAlll();
+        List<Boleto> getList = boletoService.listAll();
         if (getList == null || getList.isEmpty()) {
             throw new ResourceNotFoundException("boletos");
         }
@@ -129,7 +126,7 @@ public class BoletoController {
             Boleto boletoDelete = boletoService.findById(id);
             if (boletoDelete != null) {
                 boletoService.delete(boletoDelete);
-                return new ResponseEntity<>(ApiResponse.builder()
+                return new ResponseEntity<>(InformeResponse.builder()
                         .mensaje("Eliminado correctamente")
                         .success(true)
                         .build()

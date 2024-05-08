@@ -1,9 +1,12 @@
 package com.flyease.flyeaseapirest.service.impl;
 
 import com.flyease.flyeaseapirest.model.dao.AvionDao;
+import com.flyease.flyeaseapirest.model.dto.AsientoDto;
 import com.flyease.flyeaseapirest.model.dto.AvionDto;
+import com.flyease.flyeaseapirest.model.entity.Asiento;
 import com.flyease.flyeaseapirest.model.entity.Avion;
 import com.flyease.flyeaseapirest.service.IAvionService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -21,7 +24,7 @@ public class AvionImplService implements IAvionService {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Avion> listAlll() {
+    public List<Avion> listAll() {
         return (List) avionDao.findAll();
     }
 

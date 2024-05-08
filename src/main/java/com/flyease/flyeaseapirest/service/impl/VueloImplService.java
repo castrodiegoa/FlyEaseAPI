@@ -5,7 +5,7 @@ import com.flyease.flyeaseapirest.model.dao.VueloDao;
 import com.flyease.flyeaseapirest.model.dto.VueloDto;
 import com.flyease.flyeaseapirest.model.entity.Aeropuerto;
 import com.flyease.flyeaseapirest.model.entity.Vuelo;
-import com.flyease.flyeaseapirest.service.IVueloService;
+import com.flyease.flyeaseapirest.service.ICrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class VueloImplService implements IVueloService {
+public class VueloImplService implements ICrudService<Vuelo, VueloDto, Integer> {
 
     @Autowired
     private VueloDao vueloDao;
@@ -23,7 +23,7 @@ public class VueloImplService implements IVueloService {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Vuelo> listAlll() {
+    public List<Vuelo> listAll() {
         return (List) vueloDao.findAll();
     }
 

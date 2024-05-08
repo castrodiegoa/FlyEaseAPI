@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IAvionService {
 
-    List<Avion> listAlll();
+    List<Avion> listAll();
 
     Avion save(AvionDto avionDto);
 
