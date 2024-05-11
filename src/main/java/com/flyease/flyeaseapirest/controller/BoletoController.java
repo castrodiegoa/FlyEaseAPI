@@ -4,9 +4,16 @@ import com.flyease.flyeaseapirest.exception.BadRequestException;
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
 import com.flyease.flyeaseapirest.model.dto.BoletoDto;
 import com.flyease.flyeaseapirest.model.entity.Boleto;
+import com.flyease.flyeaseapirest.model.entity.Vuelo;
 import com.flyease.flyeaseapirest.model.payload.InformeResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
 import com.flyease.flyeaseapirest.service.ICrudService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -18,11 +25,23 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ApiFlyEase/v2")
+@Tag(name = "Boletos", description = "Métodos Crud para Boletos.")
 public class BoletoController {
 
     @Autowired
     private ICrudService<Boleto, BoletoDto, Integer> boletoService;
 
+    @Operation(summary = "Obtener todos los boletos registrados.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK. Operación realizada con éxito.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Boleto.class))}),
+            @ApiResponse(responseCode = "400",description = "Bad Request. La solicitud no pudo ser procesada debido a un error en los datos enviados o en el formato de la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Not Found. El recurso solicitado no se ha encontrado en el servidor.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Ha ocurrido un error interno en el servidor que ha impedido procesar la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))})
+    })
     @GetMapping("boletos")
     public ResponseEntity<?> showAll() {
         List<Boleto> getList = boletoService.listAll();
@@ -39,6 +58,17 @@ public class BoletoController {
                 , HttpStatus.OK);
     }
 
+    @Operation(summary = "Obtener un boleto por su ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK. Operación realizada con éxito.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Boleto.class))}),
+            @ApiResponse(responseCode = "400",description = "Bad Request. La solicitud no pudo ser procesada debido a un error en los datos enviados o en el formato de la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Not Found. El recurso solicitado no se ha encontrado en el servidor.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Ha ocurrido un error interno en el servidor que ha impedido procesar la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))})
+    })
     @GetMapping("boletos/{id}")
     public ResponseEntity<?> showById(@PathVariable Integer id) {
         Boleto boleto = boletoService.findById(id);
@@ -65,6 +95,17 @@ public class BoletoController {
                 , HttpStatus.OK);
     }
 
+    @Operation(summary = "Registrar un nuevo boleto.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK. Operación realizada con éxito.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Boleto.class))}),
+            @ApiResponse(responseCode = "400",description = "Bad Request. La solicitud no pudo ser procesada debido a un error en los datos enviados o en el formato de la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Not Found. El recurso solicitado no se ha encontrado en el servidor.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Ha ocurrido un error interno en el servidor que ha impedido procesar la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))})
+    })
     @PostMapping("boletos")
     public ResponseEntity<?> create(@RequestBody @Valid BoletoDto boletoDto) {
         Boleto boletoSave = null;
@@ -90,6 +131,17 @@ public class BoletoController {
         }
     }
 
+    @Operation(summary = "Actualizar los datos de un boleto por su ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK. Operación realizada con éxito.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Boleto.class))}),
+            @ApiResponse(responseCode = "400",description = "Bad Request. La solicitud no pudo ser procesada debido a un error en los datos enviados o en el formato de la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Not Found. El recurso solicitado no se ha encontrado en el servidor.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Ha ocurrido un error interno en el servidor que ha impedido procesar la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))})
+    })
     @PutMapping("boletos/{id}")
     public ResponseEntity<?> update(@RequestBody @Valid BoletoDto boletoDto, @PathVariable Integer id) {
         Boleto boletoUpdate = null;
@@ -120,6 +172,17 @@ public class BoletoController {
         }
     }
 
+    @Operation(summary = "Eliminar un boleto por su ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK. Operación realizada con éxito.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "400",description = "Bad Request. La solicitud no pudo ser procesada debido a un error en los datos enviados o en el formato de la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Not Found. El recurso solicitado no se ha encontrado en el servidor.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Ha ocurrido un error interno en el servidor que ha impedido procesar la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))})
+    })
     @DeleteMapping("boletos/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         try {

@@ -3,10 +3,17 @@ package com.flyease.flyeaseapirest.controller;
 import com.flyease.flyeaseapirest.exception.BadRequestException;
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
 import com.flyease.flyeaseapirest.model.dto.AvionDto;
+import com.flyease.flyeaseapirest.model.entity.Asiento;
 import com.flyease.flyeaseapirest.model.entity.Avion;
 import com.flyease.flyeaseapirest.model.payload.InformeResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
 import com.flyease.flyeaseapirest.service.IAvionService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -18,11 +25,23 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ApiFlyEase/v2")
+@Tag(name = "Aviones", description = "Métodos Crud para Aviones.")
 public class AvionController {
 
     @Autowired
     private IAvionService avionService;
 
+    @Operation(summary = "Obtener todos los aviones registrados.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK. Operación realizada con éxito.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Avion.class))}),
+            @ApiResponse(responseCode = "400",description = "Bad Request. La solicitud no pudo ser procesada debido a un error en los datos enviados o en el formato de la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Not Found. El recurso solicitado no se ha encontrado en el servidor.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Ha ocurrido un error interno en el servidor que ha impedido procesar la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))})
+    })
     @GetMapping("aviones")
     public ResponseEntity<?> showAll() {
         List<Avion> getList = avionService.listAll();
@@ -39,6 +58,17 @@ public class AvionController {
                 , HttpStatus.OK);
     }
 
+    @Operation(summary = "Obtener un avión por su ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK. Operación realizada con éxito.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Avion.class))}),
+            @ApiResponse(responseCode = "400",description = "Bad Request. La solicitud no pudo ser procesada debido a un error en los datos enviados o en el formato de la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Not Found. El recurso solicitado no se ha encontrado en el servidor.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Ha ocurrido un error interno en el servidor que ha impedido procesar la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))})
+    })
     @GetMapping("aviones/{id}")
     public ResponseEntity<?> showById(@PathVariable String id) {
         Avion avion = avionService.findById(id);
@@ -66,6 +96,17 @@ public class AvionController {
                 , HttpStatus.OK);
     }
 
+    @Operation(summary = "Registrar un nuevo Avión.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK. Operación realizada con éxito.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Avion.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad Request. La solicitud no pudo ser procesada debido a un error en los datos enviados o en el formato de la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Not Found. El recurso solicitado no se ha encontrado en el servidor.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Ha ocurrido un error interno en el servidor que ha impedido procesar la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))})
+    })
     @PostMapping("aviones")
     public ResponseEntity<?> create(@RequestBody @Valid AvionDto avionDto) {
         Avion avionSave = null;
@@ -92,6 +133,17 @@ public class AvionController {
         }
     }
 
+    @Operation(summary = "Actualizar los datos de un avión por su ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK. Operación realizada con éxito.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Avion.class))}),
+            @ApiResponse(responseCode = "400",description = "Bad Request. La solicitud no pudo ser procesada debido a un error en los datos enviados o en el formato de la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Not Found. El recurso solicitado no se ha encontrado en el servidor.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Ha ocurrido un error interno en el servidor que ha impedido procesar la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))})
+    })
     @PutMapping("aviones/{id}")
     public ResponseEntity<?> update(@RequestBody @Valid AvionDto avionDto, @PathVariable String id) {
         Avion avionUpdate = null;
@@ -122,6 +174,17 @@ public class AvionController {
         }
     }
 
+    @Operation(summary = "Eliminar un avión por su ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK. Operación realizada con éxito.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "400",description = "Bad Request. La solicitud no pudo ser procesada debido a un error en los datos enviados o en el formato de la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Not Found. El recurso solicitado no se ha encontrado en el servidor.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Ha ocurrido un error interno en el servidor que ha impedido procesar la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))})
+    })
     @DeleteMapping("aviones/{id}")
     public ResponseEntity<?> delete(@PathVariable String id) {
         try {

@@ -3,8 +3,16 @@ package com.flyease.flyeaseapirest.controller;
 import com.flyease.flyeaseapirest.exception.ResourceNotFoundException;
 import com.flyease.flyeaseapirest.model.dto.AdministadorDto;
 import com.flyease.flyeaseapirest.model.entity.Administrador;
+import com.flyease.flyeaseapirest.model.entity.Vuelo;
+import com.flyease.flyeaseapirest.model.payload.InformeResponse;
 import com.flyease.flyeaseapirest.model.payload.MensajeResponse;
 import com.flyease.flyeaseapirest.service.IReadOnlyService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +21,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/ApiFlyEase/v2")
+@Tag(name = "Administradores", description = "Métodos de autenticación y lectura para Administradores.")
 public class AdministradorController {
 
     @Autowired
     private IReadOnlyService<Administrador, Integer> administradorService;
 
+    @Operation(summary = "Obtener todos los administradores registrados.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK. Operación realizada con éxito.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Administrador.class))}),
+            @ApiResponse(responseCode = "400",description = "Bad Request. La solicitud no pudo ser procesada debido a un error en los datos enviados o en el formato de la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Not Found. El recurso solicitado no se ha encontrado en el servidor.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Ha ocurrido un error interno en el servidor que ha impedido procesar la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))})
+    })
     @GetMapping("administradores")
     public ResponseEntity<?> showAll() {
         List<Administrador> getList = administradorService.listAll();
@@ -38,6 +59,17 @@ public class AdministradorController {
                 , HttpStatus.OK);
     }
 
+    @Operation(summary = "Obtener un administrador por su ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK. Operación realizada con éxito.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Administrador.class))}),
+            @ApiResponse(responseCode = "400",description = "Bad Request. La solicitud no pudo ser procesada debido a un error en los datos enviados o en el formato de la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Not Found. El recurso solicitado no se ha encontrado en el servidor.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Ha ocurrido un error interno en el servidor que ha impedido procesar la solicitud.",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InformeResponse.class))})
+    })
     @GetMapping("administradores/{id}")
     public ResponseEntity<?> showById(@PathVariable Integer id) {
         Administrador administrador = administradorService.findById(id);

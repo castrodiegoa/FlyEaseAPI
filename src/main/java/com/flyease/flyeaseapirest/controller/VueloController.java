@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import com.flyease.flyeaseapirest.model.payload.InformeResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -23,6 +24,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ApiFlyEase/v2")
+@Tag(name = "Vuelos", description = "Métodos Crud para Vuelos.")
 public class VueloController {
 
     @Autowired
