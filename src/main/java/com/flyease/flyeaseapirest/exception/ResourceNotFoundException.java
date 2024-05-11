@@ -22,4 +22,10 @@ public class ResourceNotFoundException extends RuntimeException {
         this.resourceName = resourceName;
     }
 
+    // Para la respuesta de la autenticación de los administradores
+    public ResourceNotFoundException(String resourceName, String message) {
+        super(String.format("%s no encontrado. %s", resourceName, message));
+        this.resourceName = resourceName;
+    }
+
 }

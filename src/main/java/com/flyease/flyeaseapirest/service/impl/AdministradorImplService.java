@@ -2,6 +2,7 @@ package com.flyease.flyeaseapirest.service.impl;
 
 import com.flyease.flyeaseapirest.model.dao.AdministradorDao;
 import com.flyease.flyeaseapirest.model.entity.Administrador;
+import com.flyease.flyeaseapirest.service.IAdministradorService;
 import com.flyease.flyeaseapirest.service.IReadOnlyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class AdministradorImplService implements IReadOnlyService<Administrador, Integer> {
+public class AdministradorImplService implements IAdministradorService {
 
     @Autowired
     private AdministradorDao administradorDao;
@@ -29,6 +30,18 @@ public class AdministradorImplService implements IReadOnlyService<Administrador,
     @Override
     public boolean existsById(Integer id) {
         return administradorDao.existsById(id);
+    }
+
+    @Override
+    public boolean existsByUsernameAndPassword(String username, String password){
+        List<Administrador> administradores = listAll();
+
+        for (Administrador administrador : administradores) {
+            if (administrador.getUsuario().equals(username) && administrador.getClave().equals(password)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
